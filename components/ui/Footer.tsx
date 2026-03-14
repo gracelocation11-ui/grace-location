@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 
 const WHATSAPP = 'https://wa.me/24106203965'

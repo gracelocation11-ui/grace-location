@@ -23,7 +23,7 @@ const outfit = Outfit({
 
 /* ─── SEO METADATA ───────────────────────────────────────── */
 export const metadata: Metadata = {
-  metadataBase: new URL('https://e-shepha.com'),
+  metadataBase: new URL('https://gracelocation.online'),
   title: {
     default: 'E-Shepha Event | Premium Event Management — Libreville, Gabon',
     template: '%s | E-Shepha Event',
@@ -108,6 +108,28 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr" className="scroll-smooth">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'LocalBusiness',
+              name: 'E-Shepha Event — Grâce Location',
+              address: {
+                '@type': 'PostalAddress',
+                addressLocality: 'Libreville',
+                addressCountry: 'GA',
+              },
+              telephone: '+24106203965',
+              url: 'https://gracelocation.online',
+              description: "Organisation d'événements premium au Gabon. Location de matériel, traiteur, véhicules.",
+              foundingDate: '2006',
+              areaServed: 'Gabon',
+            }),
+          }}
+        />
+      </head>
       <body
         className={`
           ${cormorant.variable}

@@ -159,7 +159,12 @@ export default function QuoteGenerator() {
   }
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 320px', gap: '2rem', alignItems: 'start' }}>
+    <div data-quote-grid style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 320px', gap: '2rem', alignItems: 'start' }}>
+      <style>{`
+        @media (max-width: 768px) {
+          [data-quote-grid] { display: flex !important; flex-direction: column-reverse !important; }
+        }
+      `}</style>
 
       {/* ── LEFT PANEL ── */}
       <div>
@@ -348,19 +353,19 @@ export default function QuoteGenerator() {
             </p>
 
             <div>
-              <input {...register('clientName', { required: 'Requis' })} className="input-dark" placeholder="Nom complet *" disabled={submitting} style={{ fontSize: '0.875rem', padding: '0.625rem 0.875rem' }} />
+              <input {...register('clientName', { required: 'Requis' })} className="input-dark" placeholder="Nom complet *" disabled={submitting} style={{ fontSize: '16px', padding: '0.625rem 0.875rem', zIndex: 30, pointerEvents: 'all' }} />
               {errors.clientName && <span style={{ color: '#EF4444', fontSize: '0.625rem', display: 'block', marginTop: '3px' }}>{errors.clientName.message}</span>}
             </div>
             <div>
-              <input {...register('clientPhone', { required: 'Requis' })} className="input-dark" placeholder="Téléphone *" type="tel" disabled={submitting} style={{ fontSize: '0.875rem', padding: '0.625rem 0.875rem' }} />
+              <input {...register('clientPhone', { required: 'Requis' })} className="input-dark" placeholder="Téléphone *" type="tel" disabled={submitting} style={{ fontSize: '16px', padding: '0.625rem 0.875rem', zIndex: 30, pointerEvents: 'all' }} />
               {errors.clientPhone && <span style={{ color: '#EF4444', fontSize: '0.625rem', display: 'block', marginTop: '3px' }}>{errors.clientPhone.message}</span>}
             </div>
             <div>
-              <input {...register('clientEmail', { required: 'Requis', pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Email invalide' } })} className="input-dark" placeholder="Email *" type="email" disabled={submitting} style={{ fontSize: '0.875rem', padding: '0.625rem 0.875rem' }} />
+              <input {...register('clientEmail', { required: 'Requis', pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Email invalide' } })} className="input-dark" placeholder="Email *" type="email" disabled={submitting} style={{ fontSize: '16px', padding: '0.625rem 0.875rem', zIndex: 30, pointerEvents: 'all' }} />
               {errors.clientEmail && <span style={{ color: '#EF4444', fontSize: '0.625rem', display: 'block', marginTop: '3px' }}>{errors.clientEmail.message}</span>}
             </div>
-            <input {...register('companyName')} className="input-dark" placeholder="Société (optionnel)" disabled={submitting} style={{ fontSize: '0.875rem', padding: '0.625rem 0.875rem' }} />
-            <textarea {...register('notes')} className="input-dark" placeholder="Notes / précisions..." rows={2} disabled={submitting} style={{ fontSize: '0.875rem', padding: '0.625rem 0.875rem', resize: 'vertical' }} />
+            <input {...register('companyName')} className="input-dark" placeholder="Société (optionnel)" disabled={submitting} style={{ fontSize: '16px', padding: '0.625rem 0.875rem', zIndex: 30, pointerEvents: 'all' }} />
+            <textarea {...register('notes')} className="input-dark" placeholder="Notes / précisions..." rows={2} disabled={submitting} style={{ fontSize: '16px', padding: '0.625rem 0.875rem', resize: 'vertical', zIndex: 30, pointerEvents: 'all' }} />
 
             <button
               type="submit"
@@ -374,12 +379,6 @@ export default function QuoteGenerator() {
         </div>
       </div>
 
-      {/* Responsive */}
-      <style>{`
-        @media (max-width: 768px) {
-          [data-quote-grid] { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
     </div>
   )
 }

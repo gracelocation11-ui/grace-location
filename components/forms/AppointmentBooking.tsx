@@ -5,14 +5,14 @@ import { useForm } from 'react-hook-form'
 import { motion, AnimatePresence } from 'framer-motion'
 import toast from 'react-hot-toast'
 
-const ALL_SLOTS = ['09:00', '10:00', '11:00', '12:00', '14:00', '15:00', '16:00', '17:00']
+const ALL_SLOTS = ['09:00', '10:00', '11:00', '14:00', '15:00', '16:00', '17:00']
 
 const BOOKING_TYPES = [
   { value: 'discovery_call', label: 'Appel découverte', duration: 30, icon: '📞' },
-  { value: 'consultation', label: 'Consultation complète', duration: 60, icon: '🎯' },
-  { value: 'wedding_consultation', label: 'Consultation mariage', duration: 90, icon: '💍' },
+  { value: 'consultation', label: 'Coaching gratuit', duration: 60, icon: '🎯' },
+  { value: 'wedding_consultation', label: 'Coaching mariage (gratuit)', duration: 90, icon: '💍' },
   { value: 'site_visit', label: 'Visite de site', duration: 60, icon: '📍' },
-  { value: 'political_consultation', label: 'Consultation politique', duration: 60, icon: '🔒' },
+  { value: 'political_consultation', label: 'Coaching politique (gratuit)', duration: 60, icon: '🔒' },
 ]
 
 const CHANNELS = [
@@ -159,6 +159,16 @@ export default function AppointmentBooking() {
   return (
     <div style={{ background: '#0f0f0f', border: '1px solid #1A1A1A' }}>
 
+      {/* ── HEADER ── */}
+      <div style={{ padding: '1.5rem 2rem 0' }}>
+        <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 500, color: '#F7F4EE', margin: 0 }}>
+          Réserver un rendez-vous
+        </h3>
+        <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.75rem', color: '#C9A84C', marginBottom: '2rem', marginTop: '0.25rem' }}>
+          Accompagnement gratuit — sans engagement
+        </p>
+      </div>
+
       {/* ── STEP INDICATOR ── */}
       <div style={{ display: 'flex', borderBottom: '1px solid #1A1A1A' }}>
         {(['type', 'datetime', 'details'] as const).map((s, i) => {
@@ -296,7 +306,8 @@ export default function AppointmentBooking() {
                             disabled={booked}
                             onClick={() => setSelectedTime(slot)}
                             style={{
-                              padding: '0.625rem 0.25rem',
+                              padding: '0.75rem 0.25rem',
+                              minHeight: '44px',
                               background: selected ? '#C9A84C' : 'transparent',
                               border: `1px solid ${booked ? '#1A1A1A' : selected ? '#C9A84C' : '#2A2A2A'}`,
                               color: booked ? '#2A2A2A' : selected ? '#080808' : '#F7F4EE',

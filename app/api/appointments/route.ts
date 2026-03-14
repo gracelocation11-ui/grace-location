@@ -4,7 +4,7 @@ import { sendAppointmentEmail } from '@/lib/email'
 import { sendWhatsAppNotification, buildAppointmentWhatsAppMessage } from '@/lib/whatsapp'
 import type { Appointment, BookingType, BookingChannel } from '@/types'
 
-const VALID_TIMES = ['09:00', '10:00', '11:00', '12:00', '14:00', '15:00', '16:00', '17:00']
+const VALID_TIMES = ['09:00', '10:00', '11:00', '14:00', '15:00', '16:00', '17:00']
 
 /* ─── GET — return booked times for a given date ── */
 export async function GET(req: NextRequest) {

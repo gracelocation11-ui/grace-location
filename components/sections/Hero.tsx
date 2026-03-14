@@ -3,13 +3,12 @@
 import { motion } from 'framer-motion'
 import Marquee from '@/components/ui/Marquee'
 
-const WHATSAPP = 'https://wa.me/24106203965'
 
 const STATS = [
   { value: '10+', label: 'Ans d\'expérience' },
   { value: '500+', label: 'Événements réalisés' },
   { value: '50+', label: 'Partenaires actifs' },
-  { value: '3', label: 'Piliers de service' },
+  { value: '4', label: 'Piliers de service' },
 ]
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1]
@@ -171,50 +170,47 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: '0.875rem',
-            justifyContent: 'center',
-          }}
         >
-          <a href="#devis" className="btn-gold">
-            Devis gratuit
-          </a>
-          <a href="#platform" className="btn-outline">
-            Découvrir E-Shepha
-          </a>
-          <a
-            href={WHATSAPP}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              padding: '0.875rem 1.75rem',
-              background: 'rgba(37,211,102,0.1)',
-              border: '1px solid rgba(37,211,102,0.3)',
-              color: '#25D366',
-              fontFamily: 'var(--font-sans)',
-              fontSize: '0.8125rem',
-              fontWeight: 600,
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
-              textDecoration: 'none',
-              transition: 'background 0.25s ease, border-color 0.25s ease',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(37,211,102,0.18)'
-              e.currentTarget.style.borderColor = 'rgba(37,211,102,0.5)'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'rgba(37,211,102,0.1)'
-              e.currentTarget.style.borderColor = 'rgba(37,211,102,0.3)'
-            }}
-          >
-            💬 WhatsApp
-          </a>
+          <div style={{position:'relative', zIndex:20, display:'flex', flexWrap:'wrap', gap:'0.875rem', justifyContent:'center'}}>
+            <a href="#devis" className="btn-gold" style={{position:'relative', zIndex:20}}>
+              Devis gratuit
+            </a>
+            <a href="#platform" className="btn-outline" style={{position:'relative', zIndex:20}}>
+              Découvrir E-Shepha
+            </a>
+            <a
+              href="https://wa.me/24106203965"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                position:'relative', zIndex:20,
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                padding: '0.875rem 1.75rem',
+                background: 'rgba(37,211,102,0.1)',
+                border: '1px solid rgba(37,211,102,0.3)',
+                color: '#25D366',
+                fontFamily: 'var(--font-sans)',
+                fontSize: '0.8125rem',
+                fontWeight: 600,
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase',
+                textDecoration: 'none',
+                transition: 'background 0.25s ease, border-color 0.25s ease',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(37,211,102,0.18)'
+                e.currentTarget.style.borderColor = 'rgba(37,211,102,0.5)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(37,211,102,0.1)'
+                e.currentTarget.style.borderColor = 'rgba(37,211,102,0.3)'
+              }}
+            >
+              💬 WhatsApp
+            </a>
+          </div>
         </motion.div>
 
         {/* Stats */}

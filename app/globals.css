@@ -364,3 +364,25 @@ body {
   background: linear-gradient(to bottom, transparent 40%, rgba(8, 8, 8, 0.7) 100%);
   pointer-events: none;
 }
+
+/* ─── TAP / CLICK FIXES ─────────────────────────── */
+.noise-overlay::before { pointer-events: none !important; }
+* { -webkit-tap-highlight-color: transparent; }
+
+button, a, [role="button"] {
+  touch-action: manipulation !important;
+  position: relative;
+  z-index: 10;
+  cursor: pointer;
+  min-height: 44px;
+  min-width: 44px;
+}
+
+input, textarea, select {
+  font-size: 16px !important;
+  -webkit-appearance: none;
+  touch-action: manipulation;
+  position: relative;
+  z-index: 30;
+  pointer-events: all !important;
+}

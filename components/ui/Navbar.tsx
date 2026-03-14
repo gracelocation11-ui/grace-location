@@ -6,12 +6,13 @@ import Link from 'next/link'
 const WHATSAPP = 'https://wa.me/24106203965'
 
 const NAV_LINKS = [
-  { label: 'Services', href: '#services' },
-  { label: 'Véhicules', href: '#vehicules' },
-  { label: 'E-Shepha', href: '#platform' },
-  { label: 'Devis', href: '#devis' },
-  { label: 'Galerie', href: '#galerie' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Organisation', href: '/organisation-ceremonie' },
+  { label: 'Traiteur', href: '/service-traiteur' },
+  { label: 'Véhicules', href: '/location-vehicules' },
+  { label: 'E-Shepha', href: '/e-shepha-event' },
+  { label: 'Devis', href: '/devis' },
+  { label: 'Portfolio', href: '/portfolio' },
+  { label: 'Contact', href: '/contact' },
 ]
 
 export default function Navbar() {
@@ -180,13 +181,13 @@ export default function Navbar() {
               </svg>
               WhatsApp
             </a>
-            <a
-              href="#devis"
+            <Link
+              href="/devis"
               className="btn-gold"
               style={{ padding: '0.5rem 1.25rem', fontSize: '0.6875rem' }}
             >
               Devis gratuit
-            </a>
+            </Link>
           </div>
 
           {/* ── HAMBURGER ── */}
@@ -304,14 +305,14 @@ export default function Navbar() {
           >
             💬 WhatsApp
           </a>
-          <a
-            href="#devis"
+          <Link
+            href="/devis"
             onClick={handleNavClick}
             className="btn-gold"
             style={{ justifyContent: 'center' }}
           >
             Devis gratuit
-          </a>
+          </Link>
         </div>
 
         <p

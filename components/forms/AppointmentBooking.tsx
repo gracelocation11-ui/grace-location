@@ -41,7 +41,9 @@ export default function AppointmentBooking() {
   const [bookedTimes, setBookedTimes] = useState<string[]>([])
   const [loadingSlots, setLoadingSlots] = useState(false)
   const [submitting, setSubmitting] = useState(false)
-  const [confirmationRef, setConfirmationRef] = useState('')
+  const [confirmationRef, setConfirmationRef]     = useState('')
+  const [confirmationService, setConfirmationService] = useState('')
+  const [emailSent, setEmailSent]                 = useState(false)
 
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>()
 
@@ -114,10 +116,12 @@ export default function AppointmentBooking() {
       })
 
       const json = await res.json()
-      if (!res.ok) throw new Error(json.error ?? 'Erreur')
+      if (!res.ok) throw new Error(json.error ?? 'Erreur lors de la réservation')
 
-      toast.success('Rendez-vous enregistré !', { id: tid })
       setConfirmationRef(json.reference)
+      setConfirmationService(json.service ?? selectedType.label)
+      setEmailSent(json.emailSent === true)
+      toast.success('Rendez-vous enregistré !', { id: tid })
       setStep('success')
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Erreur lors de la réservation'
@@ -129,29 +133,101 @@ export default function AppointmentBooking() {
 
   /* ── SUCCESS ── */
   if (step === 'success') {
+    const waMsg = encodeURIComponent(
+      `Bonjour E-Shepha Event ! Je viens de réserver un rendez-vous (réf. ${confirmationRef}) — ${confirmationService} — le ${formatDateDisplay(selectedDate)} à ${selectedTime}. Merci de confirmer.`
+    )
+
     return (
       <motion.div
         initial={{ opacity: 0, scale: 0.97 }}
         animate={{ opacity: 1, scale: 1 }}
-        style={{ textAlign: 'center', padding: '4rem 2rem', background: '#0f0f0f', border: '1px solid #1A1A1A' }}
+        style={{ background: '#0f0f0f', border: '1px solid #1A1A1A', overflow: 'hidden' }}
       >
-        <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>📅</div>
-        <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.875rem', fontWeight: 500, color: '#F7F4EE', marginBottom: '0.5rem' }}>
-          Rendez-vous {confirmationRef}
-        </h3>
-        <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.9375rem', color: '#BDB8AD', marginBottom: '0.5rem' }}>
-          {formatDateDisplay(selectedDate)} à {selectedTime}
-        </p>
-        <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.875rem', color: '#BDB8AD', maxWidth: '40ch', margin: '0 auto 2rem', lineHeight: 1.7 }}>
-          Nous vous enverrons une confirmation par email et WhatsApp dans les 24h.
-        </p>
-        <button
-          onClick={() => { setStep('type'); setSelectedDate(''); setSelectedTime('') }}
-          className="btn-outline"
-          style={{ fontSize: '0.8125rem' }}
-        >
-          Nouveau rendez-vous
-        </button>
+        {/* Gold top bar */}
+        <div style={{ height: '3px', background: 'linear-gradient(90deg, #A8852A, #E0C068, #A8852A)' }} />
+
+        <div style={{ padding: '2.5rem 2rem', textAlign: 'center' }}>
+          {/* Icon */}
+          <div style={{
+            width: '56px', height: '56px', borderRadius: '50%',
+            background: 'rgba(201,168,76,0.1)', border: '1px solid rgba(201,168,76,0.3)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontSize: '1.5rem', margin: '0 auto 1.25rem',
+          }}>
+            ✓
+          </div>
+
+          {/* Reference */}
+          <div style={{ fontFamily: 'var(--font-sans)', fontSize: '0.625rem', fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#C9A84C', marginBottom: '0.5rem' }}>
+            {confirmationRef}
+          </div>
+
+          <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.625rem', fontWeight: 500, color: '#F7F4EE', marginBottom: '0.375rem', lineHeight: 1.2 }}>
+            Rendez-vous confirmé
+          </h3>
+
+          <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.9375rem', color: '#C9A84C', marginBottom: '0.25rem' }}>
+            {confirmationService}
+          </p>
+          <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.875rem', color: '#BDB8AD', marginBottom: '2rem' }}>
+            {formatDateDisplay(selectedDate)} · {selectedTime} · {selectedChannel.label}
+          </p>
+
+          {/* Email status banner */}
+          <div style={{
+            padding: '0.875rem 1.25rem',
+            marginBottom: '1.5rem',
+            background: emailSent ? 'rgba(37,211,102,0.06)' : 'rgba(201,168,76,0.06)',
+            border: `1px solid ${emailSent ? 'rgba(37,211,102,0.2)' : 'rgba(201,168,76,0.2)'}`,
+            textAlign: 'left',
+          }}>
+            {emailSent ? (
+              <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.8125rem', color: '#BDB8AD', margin: 0, lineHeight: 1.6 }}>
+                <span style={{ color: '#25D366' }}>✓</span> Un email de confirmation a été envoyé à{' '}
+                <strong style={{ color: '#F7F4EE' }}>{/* clientEmail shown via form */}votre adresse email</strong>.
+                Notre équipe vous contactera sous <strong style={{ color: '#F7F4EE' }}>24h ouvrables</strong>.
+              </p>
+            ) : (
+              <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.8125rem', color: '#BDB8AD', margin: 0, lineHeight: 1.6 }}>
+                <span style={{ color: '#C9A84C' }}>ℹ</span> L&apos;envoi de l&apos;email de confirmation a échoué.
+                Votre réservation est bien enregistrée — confirmez via WhatsApp ci-dessous.
+              </p>
+            )}
+          </div>
+
+          {/* Actions */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.625rem' }}>
+            <a
+              href={`https://wa.me/24106203965?text=${waMsg}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
+                padding: '0.875rem', background: 'rgba(37,211,102,0.1)',
+                border: '1px solid rgba(37,211,102,0.3)', color: '#25D366',
+                fontFamily: 'var(--font-sans)', fontSize: '0.8125rem', fontWeight: 600,
+                letterSpacing: '0.06em', textTransform: 'uppercase', textDecoration: 'none',
+                transition: 'background 0.2s ease',
+              }}
+            >
+              💬 Confirmer sur WhatsApp
+            </a>
+            <button
+              onClick={() => {
+                setStep('type')
+                setSelectedDate('')
+                setSelectedTime('')
+                setEmailSent(false)
+                setConfirmationRef('')
+                setConfirmationService('')
+              }}
+              className="btn-outline"
+              style={{ fontSize: '0.8125rem', justifyContent: 'center' }}
+            >
+              Nouveau rendez-vous
+            </button>
+          </div>
+        </div>
       </motion.div>
     )
   }
@@ -387,9 +463,28 @@ export default function AppointmentBooking() {
                     type="submit"
                     className="btn-gold"
                     disabled={submitting}
-                    style={{ flex: 1, justifyContent: 'center', fontSize: '0.8125rem', opacity: submitting ? 0.7 : 1, cursor: submitting ? 'not-allowed' : 'pointer' }}
+                    style={{
+                      flex: 1,
+                      justifyContent: 'center',
+                      fontSize: '0.8125rem',
+                      opacity: submitting ? 0.75 : 1,
+                      cursor: submitting ? 'not-allowed' : 'pointer',
+                      gap: '0.5rem',
+                    }}
                   >
-                    {submitting ? 'Envoi...' : 'Confirmer le rendez-vous'}
+                    {submitting && (
+                      <span style={{
+                        display: 'inline-block',
+                        width: '14px',
+                        height: '14px',
+                        border: '2px solid rgba(8,8,8,0.3)',
+                        borderTopColor: '#080808',
+                        borderRadius: '50%',
+                        animation: 'spin 0.7s linear infinite',
+                        flexShrink: 0,
+                      }} />
+                    )}
+                    {submitting ? 'Enregistrement...' : 'Confirmer le rendez-vous'}
                   </button>
                 </div>
               </form>
@@ -403,6 +498,9 @@ export default function AppointmentBooking() {
         @keyframes pulse {
           0%, 100% { opacity: 0.4; }
           50% { opacity: 0.7; }
+        }
+        @keyframes spin {
+          to { transform: rotate(360deg); }
         }
       `}</style>
     </div>

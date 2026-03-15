@@ -1,33 +1,39 @@
-import { createClient } from '@supabase/supabase-js'
+import { createClient, SupabaseClient } from '@supabase/supabase-js'
 
-/* ─── ENV VALIDATION ─────────────────────────────────────── */
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+/* ─── ENV ─────────────────────────────────────────────────── */
+const supabaseUrl        = process.env.NEXT_PUBLIC_SUPABASE_URL        ?? ''
+const supabaseAnonKey    = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY    ?? ''
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY        ?? ''
 
-if (!supabaseUrl) {
-  throw new Error('Missing env: NEXT_PUBLIC_SUPABASE_URL')
-}
-if (!supabaseAnonKey) {
-  throw new Error('Missing env: NEXT_PUBLIC_SUPABASE_ANON_KEY')
+const hasPublicConfig = Boolean(supabaseUrl && supabaseAnonKey)
+const hasAdminConfig  = Boolean(supabaseUrl && supabaseServiceKey)
+
+if (!hasPublicConfig && typeof window === 'undefined') {
+  console.warn(
+    '[supabase] NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_ANON_KEY is not set. ' +
+    'Database features will be disabled until env vars are configured.'
+  )
 }
 
 /* ─── PUBLIC CLIENT (browser-safe) ──────────────────────── */
-// Uses anon key — respects Row Level Security (RLS)
-// Use in client components and public API routes
-export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
-  auth: {
-    persistSession: true,
-    autoRefreshToken: true,
-    detectSessionInUrl: false,
-  },
-})
+// Uses anon key — respects Row Level Security (RLS).
+// Returns null if env vars are not set.
+export const supabase: SupabaseClient | null = hasPublicConfig
+  ? createClient(supabaseUrl, supabaseAnonKey, {
+      auth: {
+        persistSession: true,
+        autoRefreshToken: true,
+        detectSessionInUrl: false,
+      },
+    })
+  : null
 
 /* ─── ADMIN CLIENT (server-only) ─────────────────────────── */
-// Uses service_role key — bypasses RLS
-// NEVER expose this on the client — server routes only
-export const supabaseAdmin = supabaseServiceRoleKey
-  ? createClient(supabaseUrl, supabaseServiceRoleKey, {
+// Uses service_role key — bypasses RLS.
+// NEVER expose to the client — server API routes only.
+// Returns null if SUPABASE_SERVICE_ROLE_KEY is not set.
+export const supabaseAdmin: SupabaseClient | null = hasAdminConfig
+  ? createClient(supabaseUrl, supabaseServiceKey, {
       auth: {
         persistSession: false,
         autoRefreshToken: false,
@@ -35,31 +41,33 @@ export const supabaseAdmin = supabaseServiceRoleKey
     })
   : null
 
-/* ─── TYPED TABLE HELPERS ─────────────────────────────────── */
-// Centralised table names — update here if Supabase schema changes
+/* ─── CONFIG FLAGS ────────────────────────────────────────── */
+export const isSupabaseConfigured = hasPublicConfig
+export const isAdminConfigured    = hasAdminConfig
+
+/* ─── TABLE NAMES ─────────────────────────────────────────── */
 export const TABLES = {
-  ORDERS: 'orders',
-  QUOTES: 'quotes',
-  APPOINTMENTS: 'appointments',
-  LEADS: 'leads',
-  PRODUCTS: 'products',
-  VEHICLES: 'vehicles',
-  PORTFOLIO: 'portfolio',
-  PARTNERS: 'partners',
+  ORDERS:             'orders',
+  QUOTES:             'quotes',
+  APPOINTMENTS:       'appointments',
+  LEADS:              'leads',
+  PRODUCTS:           'products',
+  VEHICLES:           'vehicles',
+  PORTFOLIO:          'portfolio',
+  PARTNERS:           'partners',
   COACHING_INQUIRIES: 'coaching_inquiries',
 } as const
 
 export type TableName = (typeof TABLES)[keyof typeof TABLES]
 
-/* ─── REFERENCE GENERATORS ───────────────────────────────── */
-// Generate human-readable references for orders, quotes, appointments
+/* ─── REFERENCE GENERATOR ─────────────────────────────────── */
 export function generateReference(prefix: 'CMD' | 'DEV' | 'RDV'): string {
-  const year = new Date().getFullYear()
+  const year   = new Date().getFullYear()
   const random = Math.floor(1000 + Math.random() * 9000)
   return `${prefix}-${year}-${random}`
 }
 
-/* ─── ERROR HELPERS ──────────────────────────────────────── */
+/* ─── ERROR HELPERS ───────────────────────────────────────── */
 export function isSupabaseError(error: unknown): error is { message: string; code: string } {
   return (
     typeof error === 'object' &&
@@ -71,6 +79,6 @@ export function isSupabaseError(error: unknown): error is { message: string; cod
 
 export function getSupabaseErrorMessage(error: unknown): string {
   if (isSupabaseError(error)) return error.message
-  if (error instanceof Error) return error.message
+  if (error instanceof Error)  return error.message
   return 'Une erreur inattendue est survenue.'
 }

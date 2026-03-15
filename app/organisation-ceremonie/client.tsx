@@ -7,6 +7,7 @@ import PageHero from '@/components/ui/PageHero'
 import MobileCTABar from '@/components/ui/MobileCTABar'
 import WhatsAppFloat from '@/components/ui/WhatsAppFloat'
 import QuoteBasket, { type BasketItem } from '@/components/forms/QuoteBasket'
+import WeddingPackages from '@/components/sections/WeddingPackages'
 import { CATALOG_CATEGORIES, CATALOG_ITEMS, type CatalogItem } from '@/lib/catalog-data'
 import { formatPrice } from '@/lib/services-data'
 
@@ -19,6 +20,16 @@ export default function OrganisationCeremonieClient() {
   const filteredItems = CATALOG_ITEMS.filter(i => i.category === activeCategory)
 
   const getBasketItem = (id: string) => basket.find(b => b.id === id)
+
+  const addedPackageIds = basket.map(b => b.id)
+
+  const addPackage = (id: string, name: string, price: number) => {
+    setBasket(prev => {
+      const existing = prev.find(b => b.id === id)
+      if (existing) return prev.map(b => b.id === id ? { ...b, quantity: b.quantity + 1 } : b)
+      return [...prev, { id, name, price, unit: 'forfait', quantity: 1 }]
+    })
+  }
 
   const addItem = (item: CatalogItem) => {
     setBasket(prev => {
@@ -47,6 +58,9 @@ export default function OrganisationCeremonieClient() {
         title="Organisation de Cérémonies"
         subtitle="Location d'équipements événementiels depuis 2006"
       />
+
+      {/* Wedding packages */}
+      <WeddingPackages onAdd={addPackage} addedIds={addedPackageIds} />
 
       <section style={{ padding: '3rem 1.5rem 2rem', background: '#080808' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>

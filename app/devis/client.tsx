@@ -1,11 +1,13 @@
 'use client'
 
+import { useRef, useState } from 'react'
 import Navbar from '@/components/ui/Navbar'
 import Footer from '@/components/ui/Footer'
 import PageHero from '@/components/ui/PageHero'
 import MobileCTABar from '@/components/ui/MobileCTABar'
 import WhatsAppFloat from '@/components/ui/WhatsAppFloat'
-import QuoteGenerator from '@/components/forms/QuoteGenerator'
+import QuoteGenerator, { type QuoteGeneratorRef } from '@/components/forms/QuoteGenerator'
+import WeddingPackages from '@/components/sections/WeddingPackages'
 
 const TRUST_BADGES = [
   { icon: '🔒', label: 'Données confidentielles' },
@@ -17,6 +19,18 @@ const TRUST_BADGES = [
 const WHATSAPP = 'https://wa.me/24106203965'
 
 export default function DevisClient() {
+  const quoteRef = useRef<QuoteGeneratorRef>(null)
+  const [addedPackageIds, setAddedPackageIds] = useState<string[]>([])
+
+  const handleAddPackage = (id: string, name: string, price: number) => {
+    quoteRef.current?.addItem(id, name, price)
+    setAddedPackageIds(prev => prev.includes(id) ? prev : [...prev, id])
+    // Scroll to quote form
+    setTimeout(() => {
+      document.getElementById('devis')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }, 150)
+  }
+
   return (
     <>
       <Navbar />
@@ -38,10 +52,13 @@ export default function DevisClient() {
         </div>
       </section>
 
+      {/* Wedding packages */}
+      <WeddingPackages onAdd={handleAddPackage} addedIds={addedPackageIds} />
+
       {/* Quote Generator */}
       <section id="devis" style={{ padding: '3rem 1.5rem 5rem', background: '#080808' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <QuoteGenerator />
+          <QuoteGenerator ref={quoteRef} />
         </div>
       </section>
 

@@ -1,11 +1,15 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, forwardRef, useImperativeHandle } from 'react'
 import { useForm } from 'react-hook-form'
 import { motion, AnimatePresence } from 'framer-motion'
 import toast from 'react-hot-toast'
 import { SERVICES, formatPrice } from '@/lib/services-data'
 import type { ServiceCategory } from '@/types'
+
+export interface QuoteGeneratorRef {
+  addItem: (id: string, name: string, price: number) => void
+}
 
 /* ─── TYPES ─────────────────────────────────────────────── */
 interface CartItem {
@@ -38,7 +42,7 @@ const TABS: { id: TabId; label: string }[] = [
 const TAX_RATE = 18
 
 /* ─── COMPONENT ─────────────────────────────────────────── */
-export default function QuoteGenerator() {
+const QuoteGenerator = forwardRef<QuoteGeneratorRef>(function QuoteGenerator(_, ref) {
   const [activeTab, setActiveTab] = useState<TabId>('all')
   const [cart, setCart] = useState<CartItem[]>([])
   const [step, setStep] = useState<'catalog' | 'form' | 'success'>('catalog')
@@ -46,6 +50,17 @@ export default function QuoteGenerator() {
   const [quoteRef, setQuoteRef] = useState<string>('')
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm<ClientFormData>()
+
+  /* ── EXPOSE addItem VIA REF ── */
+  useImperativeHandle(ref, () => ({
+    addItem(id: string, name: string, price: number) {
+      setCart(prev => {
+        const existing = prev.find(i => i.serviceId === id)
+        if (existing) return prev.map(i => i.serviceId === id ? { ...i, quantity: i.quantity + 1 } : i)
+        return [...prev, { serviceId: id, serviceName: name, serviceCategory: 'event_planning' as ServiceCategory, unitPrice: price, quantity: 1 }]
+      })
+    }
+  }))
 
   /* ── FILTERED SERVICES ── */
   const filteredServices = activeTab === 'all'
@@ -459,4 +474,6 @@ export default function QuoteGenerator() {
 
     </div>
   )
-}
+})
+
+export default QuoteGenerator

@@ -1,12 +1,47 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin, generateReference, TABLES } from '@/lib/supabase'
+import { createClient } from '@supabase/supabase-js'
+import { generateReference } from '@/lib/supabase'
 import { sendAppointmentEmail } from '@/lib/email'
 import { sendWhatsAppNotification, buildAppointmentWhatsAppMessage } from '@/lib/whatsapp'
 import type { Appointment, BookingType, BookingChannel } from '@/types'
 
+/* ─── Constants ──────────────────────────────────────────── */
 const VALID_TIMES = ['09:00', '10:00', '11:00', '14:00', '15:00', '16:00', '17:00']
 
-/* ─── GET — return booked times for a given date ─────────── */
+const BOOKING_TYPE_LABELS: Record<string, string> = {
+  discovery_call:         'Appel découverte',
+  consultation:           'Coaching gratuit',
+  wedding_consultation:   'Coaching mariage',
+  site_visit:             'Visite de site',
+  political_consultation: 'Coaching politique',
+}
+
+/**
+ * Create a Supabase admin client fresh on each request.
+ *
+ * Why not module-level singleton?
+ * Next.js serverless functions can be cold-started before env vars are
+ * injected, making module-level createClient() return a broken/null client.
+ * Instantiating inside the handler guarantees we always use the live env.
+ */
+function getSupabaseAdmin() {
+  const url     = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const svcKey  = process.env.SUPABASE_SERVICE_ROLE_KEY
+
+  if (!url || !svcKey) {
+    console.error(
+      '[appointments] Supabase env vars missing:',
+      { url: Boolean(url), svcKey: Boolean(svcKey) }
+    )
+    return null
+  }
+
+  return createClient(url, svcKey, {
+    auth: { persistSession: false, autoRefreshToken: false },
+  })
+}
+
+/* ─── GET — available + booked times for a date ─────────── */
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url)
   const date = searchParams.get('date')
@@ -18,20 +53,20 @@ export async function GET(req: NextRequest) {
     )
   }
 
-  const db = supabaseAdmin
+  const db = getSupabaseAdmin()
   if (!db) {
-    // Admin client not configured — all slots appear available
+    // Supabase not configured yet — surface all slots as available
     return NextResponse.json({ bookedTimes: [], availableTimes: VALID_TIMES })
   }
 
   const { data, error } = await db
-    .from(TABLES.APPOINTMENTS)
+    .from('appointments')
     .select('time')
     .eq('date', date)
     .neq('status', 'cancelled')
 
   if (error) {
-    console.error('[appointments GET] DB error:', error)
+    console.error('[appointments GET] DB query failed:', error)
     return NextResponse.json({ bookedTimes: [], availableTimes: VALID_TIMES })
   }
 
@@ -43,6 +78,14 @@ export async function GET(req: NextRequest) {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json()
+    console.log('[appointments POST] Received body:', JSON.stringify({
+      clientName:    body.clientName,
+      clientEmail:   body.clientEmail,
+      preferredDate: body.preferredDate,
+      preferredTime: body.preferredTime,
+      type:          body.type,
+      channel:       body.channel,
+    }))
 
     /* ── VALIDATION ── */
     if (!body.clientName?.trim()) {
@@ -64,7 +107,7 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    // Reject bookings in the past
+    // Reject past bookings
     const bookingDateTime = new Date(`${body.preferredDate}T${body.preferredTime}:00`)
     if (bookingDateTime < new Date()) {
       return NextResponse.json(
@@ -73,11 +116,13 @@ export async function POST(req: NextRequest) {
       )
     }
 
+    /* ── SUPABASE CLIENT ── */
+    const db = getSupabaseAdmin()
+
     /* ── DOUBLE-BOOKING CHECK ── */
-    const db = supabaseAdmin
     if (db) {
       const { data: existing, error: checkError } = await db
-        .from(TABLES.APPOINTMENTS)
+        .from('appointments')
         .select('id')
         .eq('date', body.preferredDate)
         .eq('time', body.preferredTime)
@@ -85,11 +130,9 @@ export async function POST(req: NextRequest) {
         .maybeSingle()
 
       if (checkError) {
+        // Log but don't block — best-effort conflict check
         console.error('[appointments POST] Conflict check error:', checkError)
-        // Non-fatal — continue with best-effort check
-      }
-
-      if (existing) {
+      } else if (existing) {
         return NextResponse.json(
           { error: 'Ce créneau est déjà réservé. Veuillez choisir un autre horaire.' },
           { status: 409 }
@@ -97,18 +140,10 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    /* ── BUILD APPOINTMENT OBJECT ── */
-    const BOOKING_TYPE_LABELS: Record<string, string> = {
-      discovery_call:         'Appel découverte',
-      consultation:           'Coaching gratuit',
-      wedding_consultation:   'Coaching mariage',
-      site_visit:             'Visite de site',
-      political_consultation: 'Coaching politique',
-    }
+    /* ── BUILD APPOINTMENT ── */
     const bookingType  = (body.type as BookingType) ?? 'discovery_call'
     const serviceLabel = BOOKING_TYPE_LABELS[bookingType] ?? bookingType
 
-    // Merge topic + notes into a single text for the simplified DB column
     const combinedNotes = [body.topic?.trim(), body.notes?.trim()]
       .filter(Boolean)
       .join(' — ') || undefined
@@ -135,41 +170,51 @@ export async function POST(req: NextRequest) {
     let dbInserted = false
 
     if (db) {
+      console.log('[appointments POST] Inserting into Supabase:', appt.reference)
+
       const { error: dbError } = await db
-        .from(TABLES.APPOINTMENTS)
+        .from('appointments')
         .insert({
           id:         appt.id,
           reference:  appt.reference,
-          service:    serviceLabel,        // e.g. "Coaching gratuit"
-          date:       appt.preferredDate,  // e.g. "2025-06-15"
-          time:       appt.preferredTime,  // e.g. "10:00"
+          service:    serviceLabel,
+          date:       appt.preferredDate,
+          time:       appt.preferredTime,
           name:       appt.clientName,
           phone:      appt.clientPhone,
           email:      appt.clientEmail,
-          notes:      combinedNotes,
+          notes:      combinedNotes ?? null,
           channel:    appt.channel,
-          status:     appt.status,
+          status:     'pending',
           created_at: appt.createdAt,
         })
 
       if (dbError) {
-        console.error('[appointments POST] DB insert error:', dbError)
-        // DB is configured but insert failed → surface the error to the client
-        // so the UI never shows a false-positive success
+        // Surface the exact Supabase error code + message for easy debugging
+        console.error('[appointments POST] DB insert FAILED:', {
+          code:    dbError.code,
+          message: dbError.message,
+          details: dbError.details,
+          hint:    dbError.hint,
+        })
         return NextResponse.json(
           {
-            error: 'Erreur lors de l\'enregistrement du rendez-vous. Veuillez réessayer ou nous contacter directement via WhatsApp.',
+            error: 'Erreur lors de l\'enregistrement. Veuillez réessayer ou nous contacter via WhatsApp.',
+            debug: process.env.NODE_ENV !== 'production'
+              ? `DB error ${dbError.code}: ${dbError.message}`
+              : undefined,
           },
           { status: 500 }
         )
       }
 
       dbInserted = true
+      console.log('[appointments POST] DB insert OK:', appt.reference)
+    } else {
+      console.warn('[appointments POST] Supabase admin not available — skipping DB insert')
     }
-    // If supabaseAdmin is null (not yet configured) we still proceed:
-    // notifications are sent and admin sees the request via WhatsApp / Vercel logs.
 
-    /* ── NOTIFICATIONS ── */
+    /* ── NOTIFICATIONS (non-blocking) ── */
     const [emailResult, waResult] = await Promise.allSettled([
       sendAppointmentEmail(appt),
       sendWhatsAppNotification(buildAppointmentWhatsAppMessage(appt)),
@@ -179,13 +224,22 @@ export async function POST(req: NextRequest) {
 
     if (!emailSent) {
       console.error(
-        '[appointments POST] Email notification failed:',
+        '[appointments POST] Email failed:',
         (emailResult as PromiseRejectedResult).reason
       )
     }
     if (waResult.status === 'rejected') {
-      console.warn('[appointments POST] WhatsApp notification failed (non-critical):', waResult.reason)
+      console.warn(
+        '[appointments POST] WhatsApp failed (non-critical):',
+        waResult.reason
+      )
     }
+
+    console.log('[appointments POST] Done:', {
+      reference: appt.reference,
+      dbInserted,
+      emailSent,
+    })
 
     return NextResponse.json(
       {

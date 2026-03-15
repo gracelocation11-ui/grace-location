@@ -156,7 +156,7 @@ export default function OrganisationCeremonieClient() {
             </div>
 
             {/* RIGHT: Basket */}
-            <div style={{ position: 'sticky', top: '88px' }}>
+            <div data-catalog-basket style={{ position: 'sticky', top: '88px' }}>
               <QuoteBasket
                 items={basket}
                 onRemove={removeItem}
@@ -172,8 +172,9 @@ export default function OrganisationCeremonieClient() {
       <WhatsAppFloat />
 
       <style>{`
-        @media (max-width: 768px) {
-          [data-catalog-grid] { display: flex !important; flex-direction: column-reverse !important; }
+        @media (max-width: 1024px) {
+          [data-catalog-grid] { display: flex !important; flex-direction: column !important; }
+          [data-catalog-basket] { position: static !important; }
         }
       `}</style>
     </>

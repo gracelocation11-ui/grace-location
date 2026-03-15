@@ -149,7 +149,7 @@ export default function ServiceTraiteurClient() {
             </div>
 
             {/* RIGHT: Basket */}
-            <div style={{ position: 'sticky', top: '88px' }}>
+            <div data-traiteur-basket style={{ position: 'sticky', top: '88px' }}>
               <QuoteBasket
                 items={basket}
                 onRemove={removeItem}
@@ -165,8 +165,9 @@ export default function ServiceTraiteurClient() {
       <WhatsAppFloat />
 
       <style>{`
-        @media (max-width: 768px) {
-          [data-traiteur-grid] { display: flex !important; flex-direction: column-reverse !important; }
+        @media (max-width: 1024px) {
+          [data-traiteur-grid] { display: flex !important; flex-direction: column !important; }
+          [data-traiteur-basket] { position: static !important; }
         }
       `}</style>
     </>

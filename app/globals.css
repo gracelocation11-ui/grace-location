@@ -374,8 +374,11 @@ button, a, [role="button"] {
   position: relative;
   z-index: 10;
   cursor: pointer;
+}
+
+/* Touch targets — appliquer uniquement aux vrais CTA, pas aux petits boutons inline */
+.btn-gold, .btn-outline, nav a {
   min-height: 44px;
-  min-width: 44px;
 }
 
 input, textarea, select {
@@ -385,4 +388,28 @@ input, textarea, select {
   position: relative;
   z-index: 30;
   pointer-events: all !important;
+}
+
+/* ─── MOBILE SCROLL PERFORMANCE ──────────────────── */
+@media (max-width: 1024px) {
+  /* Désactive les animations lourdes sur mobile */
+  .animate-marquee,
+  .animate-marquee-reverse {
+    will-change: transform;
+  }
+
+  /* Améliore le scroll momentum iOS */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Sections pleine largeur — évite le débordement horizontal */
+  section {
+    overflow-x: hidden;
+  }
+
+  /* Textes lisibles sans zoom */
+  p, span, div {
+    word-break: break-word;
+  }
 }

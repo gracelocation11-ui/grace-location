@@ -161,7 +161,7 @@ export default function QuoteGenerator() {
   return (
     <div data-quote-grid style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 340px', gap: '2rem', alignItems: 'start' }}>
       <style>{`
-        @media (max-width: 900px) {
+        @media (max-width: 1024px) {
           [data-quote-grid] { display: flex !important; flex-direction: column !important; }
         }
         .quote-sticky-panel {
@@ -177,12 +177,44 @@ export default function QuoteGenerator() {
         .quote-sticky-panel::-webkit-scrollbar { width: 4px; }
         .quote-sticky-panel::-webkit-scrollbar-track { background: #111; }
         .quote-sticky-panel::-webkit-scrollbar-thumb { background: #C9A84C44; border-radius: 2px; }
-        @media (max-width: 900px) {
+        @media (max-width: 1024px) {
           .quote-sticky-panel {
             position: static !important;
             max-height: none !important;
             overflow-y: visible !important;
+            z-index: auto !important;
           }
+        }
+        .mobile-cart-bar {
+          display: none;
+          position: fixed;
+          bottom: 68px;
+          left: 0; right: 0;
+          background: #0f0f0a;
+          border-top: 2px solid #C9A84C;
+          padding: 0.75rem 1.25rem;
+          z-index: 50;
+          align-items: center;
+          justify-content: space-between;
+          gap: 1rem;
+          box-shadow: 0 -4px 24px rgba(201,168,76,0.12);
+        }
+        @media (max-width: 1024px) {
+          .mobile-cart-bar { display: flex !important; }
+        }
+        .qty-btn {
+          background: none !important;
+          border: none !important;
+          color: #C9A84C !important;
+          font-size: 1.25rem !important;
+          cursor: pointer !important;
+          line-height: 1 !important;
+          padding: 0 0.5rem !important;
+          min-height: 44px !important;
+          min-width: 36px !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
         }
       `}</style>
 
@@ -224,11 +256,10 @@ export default function QuoteGenerator() {
               return (
                 <motion.div
                   key={service.id}
-                  layout
-                  initial={{ opacity: 0, scale: 0.97 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.97 }}
-                  transition={{ duration: 0.25 }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
                   style={{
                     background: inCart ? '#0f0f0a' : '#080808',
                     padding: '1.5rem',
@@ -274,18 +305,18 @@ export default function QuoteGenerator() {
                       + Ajouter au devis
                     </button>
                   ) : (
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', border: '1px solid #C9A84C', padding: '0.375rem 0.75rem' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', border: '1px solid #C9A84C', padding: '0.25rem 0.5rem' }}>
                       <button
                         onClick={() => updateQty(service.id, -1)}
-                        style={{ background: 'none', border: 'none', color: '#C9A84C', fontSize: '1.125rem', cursor: 'pointer', lineHeight: 1, padding: '0 0.25rem' }}
+                        className="qty-btn"
                         aria-label="Diminuer"
                       >−</button>
-                      <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.875rem', fontWeight: 600, color: '#F7F4EE' }}>
+                      <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.875rem', fontWeight: 600, color: '#F7F4EE', minWidth: '1.5rem', textAlign: 'center' }}>
                         {cartItem.quantity}
                       </span>
                       <button
                         onClick={() => updateQty(service.id, 1)}
-                        style={{ background: 'none', border: 'none', color: '#C9A84C', fontSize: '1.125rem', cursor: 'pointer', lineHeight: 1, padding: '0 0.25rem' }}
+                        className="qty-btn"
                         aria-label="Augmenter"
                       >+</button>
                     </div>
@@ -303,8 +334,35 @@ export default function QuoteGenerator() {
         )}
       </div>
 
+      {/* ── MOBILE CART BAR ── */}
+      {cart.length > 0 && (
+        <div className="mobile-cart-bar">
+          <div>
+            <div style={{ fontFamily: 'var(--font-sans)', fontSize: '0.5625rem', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#C9A84C' }}>
+              {cart.length} service{cart.length > 1 ? 's' : ''}
+            </div>
+            <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1.125rem', fontWeight: 600, color: '#F7F4EE' }}>
+              {formatPrice(total, 'FCFA', { compact: true })}
+            </div>
+          </div>
+          <a
+            href="#quote-cart"
+            style={{
+              display: 'inline-flex', alignItems: 'center', gap: '0.375rem',
+              padding: '0.625rem 1.125rem',
+              background: 'linear-gradient(135deg, #C9A84C, #E0C068)',
+              color: '#080808', fontFamily: 'var(--font-sans)', fontSize: '0.75rem',
+              fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase',
+              textDecoration: 'none', minHeight: 'auto', whiteSpace: 'nowrap',
+            }}
+          >
+            Compléter →
+          </a>
+        </div>
+      )}
+
       {/* ── RIGHT PANEL — CART + FORM ── */}
-      <div className="quote-sticky-panel">
+      <div id="quote-cart" className="quote-sticky-panel">
         <div style={{ background: '#0f0f0f', border: '1px solid #1A1A1A' }}>
 
           {/* Cart header */}

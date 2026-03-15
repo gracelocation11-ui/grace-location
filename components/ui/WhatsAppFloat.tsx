@@ -1,45 +1,86 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
+import { usePathname } from 'next/navigation'
 
 const WA_NUMBER = '24106203965'
 const WA_BASE = `https://wa.me/${WA_NUMBER}?text=`
 
-const QUICK_REPLIES = [
+interface QuickReply { id: string; label: string; icon: string; message: string }
+
+const ALL_QUICK_REPLIES: (QuickReply & { pages: string[] })[] = [
   {
     id: 'event',
     label: 'Planifier un événement',
     icon: '✦',
-    message:
-      'Bonjour E-Shepha Event ! Je souhaite planifier un événement à Libreville. Pouvez-vous me donner plus d\'informations sur vos services ?',
-  },
-  {
-    id: 'vehicle',
-    label: 'Location de véhicule',
-    icon: '◉',
-    message:
-      'Bonjour E-Shepha Event ! Je suis intéressé(e) par la location d\'un véhicule. Quels sont vos tarifs et votre disponibilité ?',
-  },
-  {
-    id: 'quote',
-    label: 'Demander un devis',
-    icon: '◈',
-    message:
-      'Bonjour E-Shepha Event ! Je voudrais demander un devis pour mon projet événementiel. Comment procéder ?',
+    pages: ['/', '/organisation-ceremonie', '/e-shepha-event'],
+    message: 'Bonjour E-Shepha Event ! Je souhaite planifier un événement à Libreville. Pouvez-vous me donner plus d\'informations sur vos services ?',
   },
   {
     id: 'wedding',
     label: 'Organisation de mariage',
     icon: '◇',
-    message:
-      'Bonjour E-Shepha Event ! Je prépare mon mariage et j\'aimerais en savoir plus sur vos packages Wedding Planning à Libreville.',
+    pages: ['/', '/organisation-ceremonie'],
+    message: 'Bonjour E-Shepha Event ! Je prépare mon mariage et j\'aimerais en savoir plus sur vos packages Wedding Planning à Libreville.',
+  },
+  {
+    id: 'vehicle',
+    label: 'Location de véhicule',
+    icon: '◉',
+    pages: ['/', '/location-vehicules'],
+    message: 'Bonjour E-Shepha Event ! Je suis intéressé(e) par la location d\'un véhicule. Quels sont vos tarifs et votre disponibilité ?',
+  },
+  {
+    id: 'catering',
+    label: 'Service traiteur',
+    icon: '◈',
+    pages: ['/', '/service-traiteur'],
+    message: 'Bonjour E-Shepha Event ! Je souhaite un devis pour votre service traiteur. Pouvez-vous me présenter vos formules disponibles ?',
+  },
+  {
+    id: 'quote',
+    label: 'Demander un devis',
+    icon: '▷',
+    pages: ['/', '/devis', '/contact'],
+    message: 'Bonjour E-Shepha Event ! Je voudrais demander un devis pour mon projet événementiel. Comment procéder ?',
   },
 ]
+
+function getQuickReplies(pathname: string): QuickReply[] {
+  // On vehicle detail pages
+  if (pathname.startsWith('/location-vehicules/')) {
+    const slug = pathname.split('/').pop() ?? ''
+    const vehicleName = slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
+    return [
+      {
+        id: 'vehicle-detail',
+        label: `Réserver ce véhicule`,
+        icon: '◉',
+        message: `Bonjour E-Shepha Event ! Je souhaite un devis pour la location du véhicule ${vehicleName}. Merci de me confirmer la disponibilité et le tarif.`,
+      },
+      {
+        id: 'vehicle-general',
+        label: 'Voir d\'autres véhicules',
+        icon: '◇',
+        message: 'Bonjour E-Shepha Event ! Je suis intéressé(e) par votre flotte de véhicules. Pouvez-vous me présenter les options disponibles ?',
+      },
+    ]
+  }
+
+  // Filter replies relevant to this page, max 4
+  const pool = ALL_QUICK_REPLIES.filter(r =>
+    r.pages.includes(pathname) || r.pages.includes('/')
+  )
+  const source = pool.length ? pool : ALL_QUICK_REPLIES
+  return source.slice(0, 4).map(({ id, label, icon, message }) => ({ id, label, icon, message }))
+}
 
 export default function WhatsAppFloat() {
   const [open, setOpen] = useState(false)
   const [visible, setVisible] = useState(false)
   const popupRef = useRef<HTMLDivElement>(null)
+  const pathname = usePathname()
+  const quickReplies = getQuickReplies(pathname)
 
   // Show after 3 seconds
   useEffect(() => {
@@ -204,7 +245,7 @@ export default function WhatsAppFloat() {
 
           {/* Quick reply buttons */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-            {QUICK_REPLIES.map((reply) => (
+            {quickReplies.map((reply) => (
               <a
                 key={reply.id}
                 href={`${WA_BASE}${encodeURIComponent(reply.message)}`}

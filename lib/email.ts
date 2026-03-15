@@ -400,17 +400,23 @@ function buildContactEmailHtml(data: ContactData): string {
   return baseTemplate(content, `Message de ${data.name} — E-Shepha Event`)
 }
 
-export async function sendContactEmail(data: ContactData): Promise<void> {
-  const result = await getResend().emails.send({
-    from: FROM,
-    to: [ADMIN_EMAIL],
-    replyTo: data.email,
-    subject: `[CONTACT] ${data.name} — ${data.service}`,
-    html: buildContactEmailHtml(data),
-  })
+export async function sendContactEmail(data: ContactData): Promise<boolean> {
+  try {
+    const result = await getResend().emails.send({
+      from: FROM,
+      to: [ADMIN_EMAIL],
+      replyTo: data.email,
+      subject: `[CONTACT] ${data.name} — ${data.service}`,
+      html: buildContactEmailHtml(data),
+    })
 
-  if (result.error) {
-    console.error('[email] Contact email failed:', result.error)
-    throw new Error('Email failed to send')
+    if (result.error) {
+      console.error('[email] Contact email failed:', result.error)
+      return false
+    }
+    return true
+  } catch (err) {
+    console.error('[email] Contact email exception:', err)
+    return false
   }
 }

@@ -141,7 +141,7 @@ export default function Hero() {
           >
             génération
           </em>{' '}
-          d&apos;événements en Gabon.
+          d&apos;événements au Gabon.
         </motion.h1>
 
         {/* Subtitle */}
@@ -171,42 +171,18 @@ export default function Hero() {
           animate="visible"
           variants={fadeUp}
         >
-          <div style={{position:'relative', zIndex:20, display:'flex', flexWrap:'wrap', gap:'0.875rem', justifyContent:'center'}}>
-            <a href="#devis" className="btn-gold" style={{position:'relative', zIndex:20}}>
+          <div className="hero-ctas">
+            <a href="/devis" className="btn-gold hero-btn">
               Devis gratuit
             </a>
-            <a href="#platform" className="btn-outline" style={{position:'relative', zIndex:20}}>
+            <a href="/e-shepha-event" className="btn-outline hero-btn">
               Découvrir E-Shepha
             </a>
             <a
-              href="https://wa.me/24106203965"
+              href="https://wa.me/24106203965?text=Bonjour%20E-Shepha%20Event%20!%20Je%20souhaite%20obtenir%20des%20informations."
               target="_blank"
               rel="noopener noreferrer"
-              style={{
-                position:'relative', zIndex:20,
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                padding: '0.875rem 1.75rem',
-                background: 'rgba(37,211,102,0.1)',
-                border: '1px solid rgba(37,211,102,0.3)',
-                color: '#25D366',
-                fontFamily: 'var(--font-sans)',
-                fontSize: '0.8125rem',
-                fontWeight: 600,
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
-                textDecoration: 'none',
-                transition: 'background 0.25s ease, border-color 0.25s ease',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'rgba(37,211,102,0.18)'
-                e.currentTarget.style.borderColor = 'rgba(37,211,102,0.5)'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'rgba(37,211,102,0.1)'
-                e.currentTarget.style.borderColor = 'rgba(37,211,102,0.3)'
-              }}
+              className="hero-btn hero-wa"
             >
               💬 WhatsApp
             </a>
@@ -277,6 +253,56 @@ export default function Hero() {
         @keyframes shimmer {
           0%  { background-position: -200% center; }
           100% { background-position:  200% center; }
+        }
+        .hero-ctas {
+          position: relative;
+          z-index: 20;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.875rem;
+          justify-content: center;
+          align-items: center;
+        }
+        .hero-btn {
+          position: relative;
+          z-index: 20;
+          min-height: 48px;
+          touch-action: manipulation;
+          -webkit-tap-highlight-color: transparent;
+        }
+        .hero-wa {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+          padding: 0.875rem 1.75rem;
+          background: rgba(37,211,102,0.1);
+          border: 1px solid rgba(37,211,102,0.3);
+          color: #25D366;
+          font-family: var(--font-sans);
+          font-size: 0.8125rem;
+          font-weight: 600;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          text-decoration: none;
+          transition: background 0.25s ease, border-color 0.25s ease;
+          min-height: 48px;
+        }
+        .hero-wa:hover {
+          background: rgba(37,211,102,0.18);
+          border-color: rgba(37,211,102,0.5);
+        }
+        @media (max-width: 540px) {
+          .hero-ctas {
+            flex-direction: column;
+            width: 100%;
+            gap: 0.75rem;
+          }
+          .hero-btn, .hero-wa {
+            width: 100%;
+            max-width: 320px;
+            justify-content: center;
+          }
         }
         @media (max-width: 600px) {
           [data-stats] { grid-template-columns: repeat(2, 1fr) !important; }

@@ -194,31 +194,22 @@ export default function PortfolioSection() {
           ))}
         </div>
 
-        {/* ── CSS MASONRY GRID ── */}
-        <motion.div
-          layout
-          style={{
-            columns: '3 280px',
-            columnGap: '1px',
-            gap: '0',
-          }}
-        >
-          <AnimatePresence mode="popLayout">
+        {/* ── PORTFOLIO GRID ── */}
+        <div className="portfolio-grid">
+          <AnimatePresence mode="wait">
             {filtered.map((item) => (
               <motion.div
                 key={item.id}
-                layout
-                initial={{ opacity: 0, scale: 0.96 }}
+                initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.96 }}
-                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                 style={{
-                  breakInside: 'avoid',
-                  marginBottom: '1px',
                   position: 'relative',
                   cursor: 'pointer',
                   overflow: 'hidden',
                   display: 'block',
+                  gridRow: item.size === 'tall' ? 'span 2' : 'span 1',
                 }}
                 onMouseEnter={() => setHoveredId(item.id)}
                 onMouseLeave={() => setHoveredId(null)}
@@ -227,7 +218,8 @@ export default function PortfolioSection() {
                 <div
                   style={{
                     background: item.gradient,
-                    height: item.size === 'tall' ? '400px' : '260px',
+                    height: '100%',
+                    minHeight: item.size === 'tall' ? '400px' : '220px',
                     position: 'relative',
                     overflow: 'hidden',
                     transition: 'transform 0.5s cubic-bezier(0.22,1,0.36,1)',
@@ -330,7 +322,7 @@ export default function PortfolioSection() {
               </motion.div>
             ))}
           </AnimatePresence>
-        </motion.div>
+        </div>
 
         {/* ── COUNT ── */}
         <motion.p
@@ -349,6 +341,33 @@ export default function PortfolioSection() {
           {filtered.length} / {PORTFOLIO_ITEMS.length} réalisations affichées
         </motion.p>
       </div>
+
+      <style>{`
+        .portfolio-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          grid-auto-rows: 260px;
+          gap: 1px;
+          background: #1A1A1A;
+        }
+        .portfolio-grid > * {
+          min-height: 260px;
+        }
+        @media (max-width: 900px) {
+          .portfolio-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+        @media (max-width: 560px) {
+          .portfolio-grid {
+            grid-template-columns: 1fr;
+            grid-auto-rows: 220px;
+          }
+          .portfolio-grid > [style*="span 2"] {
+            grid-row: span 1 !important;
+          }
+        }
+      `}</style>
     </section>
   )
 }

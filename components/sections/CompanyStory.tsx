@@ -1,14 +1,105 @@
 'use client'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 
-const TIMELINE = [
-  { year: '2006', text: 'Fondation de Grâce Location à Libreville' },
-  { year: '2015', text: 'Partenaire des institutions gouvernementales gabonaises' },
-  { year: '2020', text: 'Partenaire officiel La Tropicale Amissa Bongo' },
-  { year: '2025', text: 'Naissance de E-Shepha Event' },
+const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1]
+
+interface TimelineEntry {
+  period: string
+  title: string
+  items?: string[]
+  highlight?: boolean
+}
+
+const TIMELINE: TimelineEntry[] = [
+  {
+    period: '2006',
+    title: 'Création de Grâce Location à Libreville',
+    highlight: true,
+  },
+  {
+    period: '2006 – 2026',
+    title: 'Organisation de célébrations',
+    items: ['Mariages civils', 'Mariages coutumiers'],
+  },
+  {
+    period: '2006 – 2026',
+    title: 'Collaboration avec les institutions gouvernementales gabonaises',
+  },
+  {
+    period: '2006 – 2026',
+    title: 'Services logistiques pour les Jeux scolaires et universitaires',
+  },
+  {
+    period: '2006',
+    title: 'Célébrations liées à l\'indépendance du Gabon',
+  },
+  {
+    period: '2007 – 2020',
+    title: 'Partenaire officiel de la Tropicale Amissa Bongo',
+    highlight: true,
+  },
+  {
+    period: '2008',
+    title: 'Tokyo International Conference on African Development (TICAD IV)',
+  },
+  {
+    period: '2009',
+    title: 'Inauguration du champ pétrolier Maurel & Prom Gabon',
+  },
+  {
+    period: '2009',
+    title: 'Participation à plusieurs campagnes politiques',
+  },
+  {
+    period: '2010',
+    title: 'Conférence SETRAG sur les entreprises ferroviaires',
+  },
+  {
+    period: '2012',
+    title: 'Coupe d\'Afrique des Nations (CAN)',
+    highlight: true,
+  },
+  {
+    period: '2012 – 2015',
+    title: 'Collaboration avec Airtel Gabon',
+  },
+  {
+    period: '2013',
+    title: 'Recensement général de la population et des logements',
+  },
+  {
+    period: '2014',
+    title: 'Jeux OGSSUS',
+  },
+  {
+    period: '2016',
+    title: 'Jeux OGSSUS — Participation à plusieurs campagnes politiques',
+  },
+  {
+    period: 'Plusieurs éditions',
+    title: 'Journée Africaine de la Statistique',
+  },
+  {
+    period: '2018 – 2021',
+    title: 'Recensement général de l\'agriculture',
+  },
+  {
+    period: '2023',
+    title: 'Recensement général des entreprises',
+  },
+  {
+    period: '2025 – 2026',
+    title: 'Livraisons logistiques à la Cour Constitutionnelle',
+    highlight: true,
+  },
 ]
 
 export default function CompanyStory() {
+  const [expanded, setExpanded] = useState(false)
+  const VISIBLE = 8
+  const shown = expanded ? TIMELINE : TIMELINE.slice(0, VISIBLE)
+
   return (
     <section style={{ padding: '5rem 1.5rem', background: '#080808' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
@@ -21,16 +112,26 @@ export default function CompanyStory() {
           fontSize: 'clamp(2rem, 4vw, 3.5rem)',
           fontWeight: 500,
           color: '#F7F4EE',
-          marginBottom: '3rem',
+          marginBottom: '0.5rem',
           letterSpacing: '-0.02em',
         }}>
-          De Grâce Location à E-Shepha Event
+          Depuis 2006
         </h2>
+        <p style={{
+          fontFamily: 'var(--font-sans)',
+          fontSize: '0.9375rem',
+          color: '#BDB8AD',
+          lineHeight: 1.7,
+          marginBottom: '3rem',
+          maxWidth: '60ch',
+        }}>
+          Grâce Location accompagne les plus grands événements du Gabon depuis près de 20 ans.
+        </p>
 
         {/* 2-col layout */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
+          gridTemplateColumns: '1fr 380px',
           gap: '4rem',
           alignItems: 'start',
         }}
@@ -41,110 +142,223 @@ export default function CompanyStory() {
             {/* Vertical gold line */}
             <div style={{
               position: 'absolute',
-              left: '3.5rem',
+              left: '5.5rem',
               top: '0.75rem',
               bottom: '0.75rem',
               width: '1px',
-              background: 'linear-gradient(to bottom, #C9A84C, rgba(201,168,76,0.1))',
+              background: 'linear-gradient(to bottom, #C9A84C, rgba(201,168,76,0.05))',
+              pointerEvents: 'none',
             }} />
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-              {TIMELINE.map((entry, i) => (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
+              {shown.map((entry, i) => (
                 <motion.div
-                  key={entry.year}
-                  initial={{ opacity: 0, x: -20 }}
+                  key={`${entry.period}-${i}`}
+                  initial={{ opacity: 0, x: -16 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: '-30px' }}
-                  transition={{ duration: 0.5, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                  style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem' }}
+                  viewport={{ once: true, margin: '-20px' }}
+                  transition={{ duration: 0.45, delay: Math.min(i * 0.05, 0.4), ease: EASE }}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    gap: '1.5rem',
+                    padding: '1.125rem 0',
+                    borderBottom: '1px solid #111',
+                  }}
                 >
-                  {/* Year */}
+                  {/* Period */}
                   <div style={{
                     fontFamily: 'var(--font-serif)',
-                    fontSize: '1.25rem',
+                    fontSize: '0.875rem',
                     fontWeight: 600,
-                    color: '#C9A84C',
+                    color: entry.highlight ? '#C9A84C' : '#BDB8AD',
                     flexShrink: 0,
-                    width: '4rem',
+                    width: '5.5rem',
                     textAlign: 'right',
                     lineHeight: 1.4,
+                    paddingTop: '3px',
+                    letterSpacing: '-0.01em',
                   }}>
-                    {entry.year}
+                    {entry.period}
                   </div>
+
                   {/* Dot */}
                   <div style={{
-                    width: '8px',
-                    height: '8px',
+                    width: entry.highlight ? '10px' : '7px',
+                    height: entry.highlight ? '10px' : '7px',
                     borderRadius: '50%',
-                    background: '#C9A84C',
+                    background: entry.highlight ? '#C9A84C' : '#2A2A2A',
+                    border: entry.highlight ? 'none' : '1px solid #C9A84C44',
                     flexShrink: 0,
-                    marginTop: '0.45rem',
+                    marginTop: '5px',
                     position: 'relative',
                     zIndex: 1,
+                    boxShadow: entry.highlight ? '0 0 8px #C9A84C55' : 'none',
                   }} />
-                  {/* Text */}
-                  <p style={{
-                    fontFamily: 'var(--font-sans)',
-                    fontSize: '0.9375rem',
-                    color: '#BDB8AD',
-                    lineHeight: 1.6,
-                    flex: 1,
-                  }}>
-                    {entry.text}
-                  </p>
+
+                  {/* Content */}
+                  <div style={{ flex: 1 }}>
+                    <p style={{
+                      fontFamily: 'var(--font-sans)',
+                      fontSize: '0.875rem',
+                      color: entry.highlight ? '#F7F4EE' : '#BDB8AD',
+                      fontWeight: entry.highlight ? 500 : 400,
+                      lineHeight: 1.5,
+                      margin: 0,
+                    }}>
+                      {entry.title}
+                    </p>
+                    {entry.items && (
+                      <ul style={{
+                        margin: '0.375rem 0 0',
+                        paddingLeft: '1rem',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '0.125rem',
+                      }}>
+                        {entry.items.map(item => (
+                          <li key={item} style={{
+                            fontFamily: 'var(--font-sans)',
+                            fontSize: '0.8125rem',
+                            color: '#7A756C',
+                            listStyle: 'none',
+                            paddingLeft: 0,
+                          }}>
+                            <span style={{ color: '#C9A84C44', marginRight: '0.375rem' }}>—</span>
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
                 </motion.div>
               ))}
             </div>
+
+            {/* Show more / less */}
+            {TIMELINE.length > VISIBLE && (
+              <button
+                onClick={() => setExpanded(e => !e)}
+                style={{
+                  marginTop: '1.5rem',
+                  background: 'none',
+                  border: '1px solid #2A2A2A',
+                  color: '#C9A84C',
+                  fontFamily: 'var(--font-sans)',
+                  fontSize: '0.75rem',
+                  fontWeight: 600,
+                  letterSpacing: '0.12em',
+                  textTransform: 'uppercase',
+                  padding: '0.625rem 1.5rem',
+                  cursor: 'pointer',
+                  transition: 'border-color 0.2s ease, background 0.2s ease',
+                  minHeight: '44px',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = '#C9A84C'
+                  e.currentTarget.style.background = 'rgba(201,168,76,0.05)'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = '#2A2A2A'
+                  e.currentTarget.style.background = 'none'
+                }}
+              >
+                {expanded ? '↑ Réduire' : `Voir tout (${TIMELINE.length} événements) →`}
+              </button>
+            )}
           </div>
 
-          {/* RIGHT: Quote box */}
+          {/* RIGHT: Quote + stats box */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-30px' }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            style={{
+            transition={{ duration: 0.6, ease: EASE }}
+            style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}
+          >
+            {/* Quote box */}
+            <div style={{
               border: '1px solid #2A2A2A',
               borderLeft: '3px solid #C9A84C',
-              padding: '2.5rem',
+              padding: '2rem',
               background: '#0a0a0a',
-            }}
-          >
-            <p style={{
-              fontFamily: 'var(--font-sans)',
-              fontSize: '1.0625rem',
-              color: '#F7F4EE',
-              lineHeight: 1.8,
-              marginBottom: '1.5rem',
             }}>
-              Née en 2006, Grâce Location a équipé plus de 500 événements au Gabon.
-              Aujourd&apos;hui, cette expertise devient E-Shepha Event.
-            </p>
+              <p style={{
+                fontFamily: 'var(--font-sans)',
+                fontSize: '0.9375rem',
+                color: '#F7F4EE',
+                lineHeight: 1.8,
+                marginBottom: '1.25rem',
+              }}>
+                Née en 2006, Grâce Location a équipé plus de 500 événements au Gabon.
+                Aujourd&apos;hui, cette expertise devient E-Shepha Event.
+              </p>
+              <div style={{ width: '32px', height: '1px', background: 'linear-gradient(90deg, #C9A84C, transparent)', marginBottom: '1.25rem' }} />
+              <p style={{
+                fontFamily: 'var(--font-serif)',
+                fontSize: '1.125rem',
+                fontStyle: 'italic',
+                color: '#C9A84C',
+                lineHeight: 1.6,
+                margin: 0,
+              }}>
+                &ldquo;Une nouvelle ère événementielle commence.&rdquo;
+              </p>
+            </div>
 
-            {/* Divider */}
-            <div style={{
-              width: '48px',
-              height: '1px',
-              background: 'linear-gradient(90deg, #C9A84C, transparent)',
-              marginBottom: '1.5rem',
-            }} />
-
-            <p style={{
-              fontFamily: 'var(--font-serif)',
-              fontSize: '1.25rem',
-              fontStyle: 'italic',
-              color: '#C9A84C',
-              lineHeight: 1.6,
-            }}>
-              &ldquo;Une nouvelle ère événementielle commence.&rdquo;
-            </p>
+            {/* Stats */}
+            {[
+              { value: '20', unit: 'ans', label: 'd\'expérience' },
+              { value: '500+', unit: '', label: 'événements organisés' },
+              { value: '19', unit: '+', label: 'références nationales' },
+            ].map((s, i) => (
+              <motion.div
+                key={s.label}
+                initial={{ opacity: 0, x: 12 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1, duration: 0.4, ease: EASE }}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '1.25rem',
+                  padding: '1.25rem',
+                  border: '1px solid #1A1A1A',
+                  background: '#0a0a0a',
+                }}
+              >
+                <div style={{
+                  fontFamily: 'var(--font-serif)',
+                  fontSize: '2rem',
+                  fontWeight: 600,
+                  color: '#C9A84C',
+                  lineHeight: 1,
+                  flexShrink: 0,
+                }}>
+                  {s.value}<span style={{ fontSize: '1rem' }}>{s.unit}</span>
+                </div>
+                <div style={{
+                  fontFamily: 'var(--font-sans)',
+                  fontSize: '0.8125rem',
+                  color: '#BDB8AD',
+                  lineHeight: 1.4,
+                }}>
+                  {s.label}
+                </div>
+              </motion.div>
+            ))}
           </motion.div>
         </div>
       </div>
 
       <style>{`
+        @media (max-width: 900px) {
+          [data-story-grid] { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
+        }
         @media (max-width: 768px) {
-          [data-story-grid] { grid-template-columns: 1fr !important; gap: 2rem !important; }
+          [data-story-grid] > div:first-child div[style*="left: 5.5rem"] {
+            left: 4.5rem !important;
+          }
         }
       `}</style>
     </section>

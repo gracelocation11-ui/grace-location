@@ -41,9 +41,17 @@ export async function POST(req: NextRequest) {
       data.message.substring(0, 300) + (data.message.length > 300 ? '...' : ''),
     ].join('\n')
 
-    /* ── SEND (non-blocking for WA) ── */
-    await sendContactEmail(data)
-    await sendWhatsAppNotification(waMessage)
+    /* ── SEND (both non-blocking — contact is still logged) ── */
+    const [emailSent] = await Promise.allSettled([
+      sendContactEmail(data),
+      sendWhatsAppNotification(waMessage),
+    ])
+
+    // Always return success — the admin sees the request via WhatsApp/Vercel logs
+    // even if Resend is not yet configured
+    if (emailSent.status === 'rejected') {
+      console.warn('[contact API] Email notification failed (non-critical):', emailSent.reason)
+    }
 
     return NextResponse.json({ success: true }, { status: 200 })
   } catch (err) {

@@ -159,10 +159,30 @@ export default function QuoteGenerator() {
   }
 
   return (
-    <div data-quote-grid style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 320px', gap: '2rem', alignItems: 'start' }}>
+    <div data-quote-grid style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 340px', gap: '2rem', alignItems: 'start' }}>
       <style>{`
-        @media (max-width: 768px) {
-          [data-quote-grid] { display: flex !important; flex-direction: column-reverse !important; }
+        @media (max-width: 900px) {
+          [data-quote-grid] { display: flex !important; flex-direction: column !important; }
+        }
+        .quote-sticky-panel {
+          position: sticky;
+          top: 80px;
+          max-height: calc(100vh - 100px);
+          overflow-y: auto;
+          overflow-x: hidden;
+          scrollbar-width: thin;
+          scrollbar-color: #C9A84C44 #111;
+          z-index: 5;
+        }
+        .quote-sticky-panel::-webkit-scrollbar { width: 4px; }
+        .quote-sticky-panel::-webkit-scrollbar-track { background: #111; }
+        .quote-sticky-panel::-webkit-scrollbar-thumb { background: #C9A84C44; border-radius: 2px; }
+        @media (max-width: 900px) {
+          .quote-sticky-panel {
+            position: static !important;
+            max-height: none !important;
+            overflow-y: visible !important;
+          }
         }
       `}</style>
 
@@ -284,7 +304,7 @@ export default function QuoteGenerator() {
       </div>
 
       {/* ── RIGHT PANEL — CART + FORM ── */}
-      <div style={{ position: 'sticky', top: '88px' }}>
+      <div className="quote-sticky-panel">
         <div style={{ background: '#0f0f0f', border: '1px solid #1A1A1A' }}>
 
           {/* Cart header */}

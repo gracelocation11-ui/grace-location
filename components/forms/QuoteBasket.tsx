@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import toast from 'react-hot-toast'
 import { formatPrice } from '@/lib/services-data'
@@ -63,6 +63,16 @@ export default function QuoteBasket({ items, onRemove, onUpdateQty }: QuoteBaske
     setErrors(e)
     return Object.keys(e).length === 0
   }
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (modalOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => { document.body.style.overflow = '' }
+  }, [modalOpen])
 
   const openModal = () => {
     if (items.length === 0) {
@@ -223,7 +233,7 @@ export default function QuoteBasket({ items, onRemove, onUpdateQty }: QuoteBaske
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            style={{ position: 'fixed', inset: 0, zIndex: 200, background: 'rgba(0,0,0,0.8)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}
+            style={{ position: 'fixed', inset: 0, zIndex: 9000, background: 'rgba(0,0,0,0.85)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}
             onClick={(e) => { if (e.target === e.currentTarget) setModalOpen(false) }}
           >
             <motion.div

@@ -371,8 +371,6 @@ body {
 
 button, a, [role="button"] {
   touch-action: manipulation !important;
-  position: relative;
-  z-index: 10;
   cursor: pointer;
 }
 

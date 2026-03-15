@@ -388,26 +388,20 @@ input, textarea, select {
   pointer-events: all !important;
 }
 
-/* ─── MOBILE SCROLL PERFORMANCE ──────────────────── */
+/* ─── MOBILE TAP AREA EXTENSION ──────────────────── */
+/* Agrandit la zone de tap sans affecter le layout visuel */
 @media (max-width: 1024px) {
-  /* Désactive les animations lourdes sur mobile */
+  button {
+    position: relative;
+  }
+  button::after {
+    content: '';
+    position: absolute;
+    inset: -8px;
+  }
+  /* Marquees : indique au GPU qu'ils vont bouger */
   .animate-marquee,
   .animate-marquee-reverse {
     will-change: transform;
-  }
-
-  /* Améliore le scroll momentum iOS */
-  * {
-    -webkit-overflow-scrolling: touch;
-  }
-
-  /* Sections pleine largeur — évite le débordement horizontal */
-  section {
-    overflow-x: hidden;
-  }
-
-  /* Textes lisibles sans zoom */
-  p, span, div {
-    word-break: break-word;
   }
 }

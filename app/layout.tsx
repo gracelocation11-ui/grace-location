@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Cormorant_Garamond, Outfit } from 'next/font/google'
 import { Toaster } from 'react-hot-toast'
+import { Agentation } from 'agentation'
 import './globals.css'
 
 /* ─── FONTS ─────────────────────────────────────────────── */
@@ -142,6 +143,8 @@ export default function RootLayout({
         `}
       >
         {children}
+
+        {process.env.NODE_ENV === 'development' && <Agentation />}
 
         <Toaster
           position="top-right"

@@ -12,7 +12,7 @@ const CATEGORIES = [
     sublabel: 'Cérémonies · Galas · Conférences',
     count: '300+ événements',
     gradient: 'linear-gradient(135deg, #1a0e04 0%, #2e1a08 50%, #1a1004 100%)',
-    accent: '#C9A84C',
+    accent: 'var(--gold)',
     icon: '✦',
     cover: '/portfolio/mariages/cover.jpg',
   },
@@ -53,19 +53,19 @@ export default function PortfolioPreview() {
         >
           <div>
             <div className="section-label" style={{ marginBottom: '0.75rem' }}>Portfolio</div>
-            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.75rem, 3vw, 2.75rem)', fontWeight: 500, color: '#F7F4EE', margin: 0, lineHeight: 1.1 }}>
+            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.75rem, 3vw, 2.75rem)', fontWeight: 500, color: '#F5F5F5', margin: 0, lineHeight: 1.1 }}>
               Nos Réalisations
             </h2>
           </div>
           <Link href="/portfolio" style={{
             fontFamily: 'var(--font-sans)', fontSize: '0.75rem', fontWeight: 600,
             letterSpacing: '0.1em', textTransform: 'uppercase',
-            color: '#BDB8AD', textDecoration: 'none',
+            color: 'rgba(245,245,245,0.55)', textDecoration: 'none',
             display: 'flex', alignItems: 'center', gap: '0.5rem',
             transition: 'color 0.2s ease',
           }}
-            onMouseEnter={e => (e.currentTarget.style.color = '#C9A84C')}
-            onMouseLeave={e => (e.currentTarget.style.color = '#BDB8AD')}
+            onMouseEnter={e => (e.currentTarget.style.color = 'var(--gold)')}
+            onMouseLeave={e => (e.currentTarget.style.color = 'rgba(245,245,245,0.55)')}
           >
             Voir tout →
           </Link>
@@ -128,12 +128,12 @@ export default function PortfolioPreview() {
                     <h3 style={{
                       fontFamily: 'var(--font-serif)',
                       fontSize: 'clamp(1.25rem, 1.8vw, 1.625rem)',
-                      fontWeight: 500, color: '#F7F4EE',
+                      fontWeight: 500, color: '#F5F5F5',
                       margin: '0 0 0.25rem', lineHeight: 1.2,
                     }}>{cat.label}</h3>
                     <p style={{
                       fontFamily: 'var(--font-sans)', fontSize: '0.6875rem',
-                      color: '#BDB8AD', margin: '0 0 0.875rem', lineHeight: 1.5,
+                      color: 'rgba(245,245,245,0.55)', margin: '0 0 0.875rem', lineHeight: 1.5,
                     }}>{cat.sublabel}</p>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                       <span style={{
@@ -144,7 +144,7 @@ export default function PortfolioPreview() {
                       <span style={{
                         fontFamily: 'var(--font-sans)', fontSize: '0.625rem',
                         fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase',
-                        color: '#F7F4EE', display: 'flex', alignItems: 'center', gap: '0.3rem',
+                        color: '#F5F5F5', display: 'flex', alignItems: 'center', gap: '0.3rem',
                       }}>Voir →</span>
                     </div>
                   </div>

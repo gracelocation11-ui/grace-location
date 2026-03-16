@@ -10,7 +10,7 @@ const STATS = [
 
 export default function TrustStats() {
   return (
-    <section style={{ background: '#080808', borderTop: '1px solid #1A1A1A', borderBottom: '1px solid #1A1A1A' }}>
+    <section style={{ background: '#0A0A0A', borderTop: '1px solid #1A1A1A', borderBottom: '1px solid #1A1A1A' }}>
       <div style={{
         maxWidth: '1200px',
         margin: '0 auto',
@@ -27,7 +27,7 @@ export default function TrustStats() {
             viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
             style={{
-              background: '#080808',
+              background: '#0A0A0A',
               padding: '3rem 2rem',
               textAlign: 'center',
             }}
@@ -36,7 +36,7 @@ export default function TrustStats() {
               fontFamily: 'var(--font-serif)',
               fontSize: 'clamp(2.5rem, 5vw, 4rem)',
               fontWeight: 600,
-              color: '#C9A84C',
+              color: 'var(--gold)',
               lineHeight: 1,
               marginBottom: '0.75rem',
               letterSpacing: '-0.02em',
@@ -49,7 +49,7 @@ export default function TrustStats() {
               fontWeight: 400,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#BDB8AD',
+              color: 'rgba(245,245,245,0.55)',
               lineHeight: 1.4,
             }}>
               {stat.label}

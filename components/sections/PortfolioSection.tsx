@@ -22,7 +22,7 @@ const PORTFOLIO_ITEMS = [
     category: 'mariages' as FilterTab,
     date: 'Décembre 2024',
     gradient: 'linear-gradient(135deg, #2a1a08 0%, #4a2e0e 100%)',
-    accentColor: '#C9A84C',
+    accentColor: 'var(--gold)',
     size: 'tall',
   },
   {
@@ -62,7 +62,7 @@ const PORTFOLIO_ITEMS = [
     category: 'traiteur' as FilterTab,
     date: 'Octobre 2024',
     gradient: 'linear-gradient(135deg, #1a1808 0%, #2a2808 100%)',
-    accentColor: '#C9A84C',
+    accentColor: 'var(--gold)',
     size: 'normal',
   },
   {
@@ -82,7 +82,7 @@ const PORTFOLIO_ITEMS = [
     category: 'mariages' as FilterTab,
     date: 'Août 2024',
     gradient: 'linear-gradient(135deg, #221008 0%, #3a1a0a 100%)',
-    accentColor: '#C9A84C',
+    accentColor: 'var(--gold)',
     size: 'normal',
   },
   {
@@ -138,7 +138,7 @@ export default function PortfolioSection() {
               fontFamily: 'var(--font-serif)',
               fontSize: 'clamp(2rem, 4vw, 3.5rem)',
               fontWeight: 500,
-              color: '#F7F4EE',
+              color: '#F5F5F5',
               lineHeight: 1.1,
             }}
           >
@@ -168,24 +168,24 @@ export default function PortfolioSection() {
                 padding: '0.5rem 1.125rem',
                 border: '1px solid',
                 borderColor:
-                  activeFilter === tab.value ? '#C9A84C' : '#2A2A2A',
+                  activeFilter === tab.value ? 'var(--gold)' : '#2A2A2A',
                 background:
-                  activeFilter === tab.value ? '#C9A84C' : 'transparent',
+                  activeFilter === tab.value ? 'var(--gold)' : 'transparent',
                 color:
-                  activeFilter === tab.value ? '#080808' : '#BDB8AD',
+                  activeFilter === tab.value ? '#0A0A0A' : 'rgba(245,245,245,0.55)',
                 cursor: 'pointer',
                 transition: 'all 0.25s ease',
               }}
               onMouseEnter={(e) => {
                 if (activeFilter !== tab.value) {
-                  e.currentTarget.style.borderColor = '#C9A84C44'
-                  e.currentTarget.style.color = '#C9A84C'
+                  e.currentTarget.style.borderColor = 'var(--gold)44'
+                  e.currentTarget.style.color = 'var(--gold)'
                 }
               }}
               onMouseLeave={(e) => {
                 if (activeFilter !== tab.value) {
                   e.currentTarget.style.borderColor = '#2A2A2A'
-                  e.currentTarget.style.color = '#BDB8AD'
+                  e.currentTarget.style.color = 'rgba(245,245,245,0.55)'
                 }
               }}
             >
@@ -290,7 +290,7 @@ export default function PortfolioSection() {
                       fontFamily: 'var(--font-serif)',
                       fontSize: '1.375rem',
                       fontWeight: 500,
-                      color: '#F7F4EE',
+                      color: '#F5F5F5',
                       marginBottom: '0.25rem',
                     }}
                   >
@@ -300,7 +300,7 @@ export default function PortfolioSection() {
                     style={{
                       fontFamily: 'var(--font-sans)',
                       fontSize: '0.75rem',
-                      color: '#BDB8AD',
+                      color: 'rgba(245,245,245,0.55)',
                       marginBottom: '0.5rem',
                     }}
                   >

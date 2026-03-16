@@ -23,7 +23,7 @@ const SEPARATOR = (
       width: '6px',
       height: '6px',
       borderRadius: '50%',
-      background: '#C9A84C',
+      background: 'var(--gold)',
       margin: '0 1.25rem',
       verticalAlign: 'middle',
       flexShrink: 0,
@@ -76,7 +76,7 @@ export default function Marquee({
                 fontWeight: 600,
                 letterSpacing: '0.2em',
                 textTransform: 'uppercase',
-                color: '#BDB8AD',
+                color: 'rgba(245,245,245,0.55)',
                 whiteSpace: 'nowrap',
                 flexShrink: 0,
               }}

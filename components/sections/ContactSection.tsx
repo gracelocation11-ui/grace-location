@@ -100,7 +100,7 @@ export default function ContactSection() {
   return (
     <section
       id="contact"
-      style={{ padding: '7rem 1.5rem', background: '#080808', position: 'relative' }}
+      style={{ padding: '7rem 1.5rem', background: '#0A0A0A', position: 'relative' }}
     >
       <div
         style={{
@@ -127,7 +127,7 @@ export default function ContactSection() {
               fontFamily: 'var(--font-serif)',
               fontSize: 'clamp(2rem, 3.5vw, 3rem)',
               fontWeight: 500,
-              color: '#F7F4EE',
+              color: '#F5F5F5',
               lineHeight: 1.1,
               marginBottom: '1rem',
             }}
@@ -138,7 +138,7 @@ export default function ContactSection() {
             style={{
               fontFamily: 'var(--font-sans)',
               fontSize: '0.9375rem',
-              color: '#BDB8AD',
+              color: 'rgba(245,245,245,0.55)',
               lineHeight: 1.7,
               marginBottom: '2.5rem',
             }}
@@ -253,7 +253,7 @@ export default function ContactSection() {
                 fontFamily: 'var(--font-serif)',
                 fontSize: '1.625rem',
                 fontWeight: 500,
-                color: '#F7F4EE',
+                color: '#F5F5F5',
                 marginBottom: '0.5rem',
               }}
             >
@@ -263,7 +263,7 @@ export default function ContactSection() {
               style={{
                 fontFamily: 'var(--font-sans)',
                 fontSize: '0.8125rem',
-                color: '#BDB8AD',
+                color: 'rgba(245,245,245,0.55)',
                 marginBottom: '2rem',
               }}
             >
@@ -388,7 +388,7 @@ export default function ContactSection() {
                 style={{
                   fontFamily: 'var(--font-sans)',
                   fontSize: '0.6875rem',
-                  color: '#BDB8AD',
+                  color: 'rgba(245,245,245,0.55)',
                   textAlign: 'center',
                   opacity: 0.6,
                 }}
@@ -442,7 +442,7 @@ function ContactCardContent({
             fontWeight: 600,
             letterSpacing: '0.15em',
             textTransform: 'uppercase',
-            color: '#BDB8AD',
+            color: 'rgba(245,245,245,0.55)',
             marginBottom: '0.25rem',
           }}
         >
@@ -453,7 +453,7 @@ function ContactCardContent({
             fontFamily: 'var(--font-sans)',
             fontSize: '0.9375rem',
             fontWeight: 500,
-            color: card.highlight ? '#25D366' : '#F7F4EE',
+            color: card.highlight ? '#25D366' : '#F5F5F5',
           }}
         >
           {card.value}
@@ -463,7 +463,7 @@ function ContactCardContent({
             style={{
               fontFamily: 'var(--font-sans)',
               fontSize: '0.8125rem',
-              color: '#BDB8AD',
+              color: 'rgba(245,245,245,0.55)',
               marginTop: '2px',
             }}
           >

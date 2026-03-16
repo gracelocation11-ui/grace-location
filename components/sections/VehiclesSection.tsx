@@ -15,7 +15,7 @@ const VEHICLES = [
     pricePerDay: 250_000,
     features: ['4×4 Intégral', 'Climatisation', 'Wi-Fi', 'Cuir'],
     badge: 'Recommandé',
-    badgeColor: '#C9A84C',
+    badgeColor: 'var(--gold)',
     gradient: 'linear-gradient(135deg, #1a1a1a 0%, #2a2218 100%)',
   },
   {
@@ -114,7 +114,7 @@ export default function VehiclesSection() {
                 fontFamily: 'var(--font-serif)',
                 fontSize: 'clamp(2rem, 4vw, 3.5rem)',
                 fontWeight: 500,
-                color: '#F7F4EE',
+                color: '#F5F5F5',
                 lineHeight: 1.1,
               }}
             >
@@ -133,7 +133,7 @@ export default function VehiclesSection() {
                   fontWeight: 600,
                   letterSpacing: '0.12em',
                   textTransform: 'uppercase',
-                  color: '#BDB8AD',
+                  color: 'rgba(245,245,245,0.55)',
                   padding: '0.375rem 0.75rem',
                   border: '1px solid #2A2A2A',
                   background: '#111',
@@ -171,7 +171,7 @@ export default function VehiclesSection() {
                   ease: [0.22, 1, 0.36, 1],
                 }}
                 style={{
-                  background: '#080808',
+                  background: '#0A0A0A',
                   position: 'relative',
                   display: 'flex',
                   flexDirection: 'column',
@@ -213,8 +213,8 @@ export default function VehiclesSection() {
                         position: 'absolute',
                         top: '12px',
                         left: '12px',
-                        background: v.badgeColor ?? '#C9A84C',
-                        color: v.badgeColor === '#C9A84C' ? '#080808' : '#fff',
+                        background: v.badgeColor ?? 'var(--gold)',
+                        color: v.badgeColor === 'var(--gold)' ? '#0A0A0A' : '#fff',
                         fontFamily: 'var(--font-sans)',
                         fontSize: '0.5625rem',
                         fontWeight: 700,
@@ -243,7 +243,7 @@ export default function VehiclesSection() {
                       style={{
                         fontFamily: 'var(--font-sans)',
                         fontSize: '0.5rem',
-                        color: '#BDB8AD',
+                        color: 'rgba(245,245,245,0.55)',
                         letterSpacing: '0.1em',
                         textTransform: 'uppercase',
                       }}
@@ -255,7 +255,7 @@ export default function VehiclesSection() {
                         fontFamily: 'var(--font-serif)',
                         fontSize: '1.125rem',
                         fontWeight: 600,
-                        color: '#C9A84C',
+                        color: 'var(--gold)',
                         lineHeight: 1.2,
                       }}
                     >
@@ -274,7 +274,7 @@ export default function VehiclesSection() {
                         fontWeight: 600,
                         letterSpacing: '0.18em',
                         textTransform: 'uppercase',
-                        color: '#C9A84C',
+                        color: 'var(--gold)',
                         marginBottom: '0.25rem',
                       }}
                     >
@@ -285,7 +285,7 @@ export default function VehiclesSection() {
                         fontFamily: 'var(--font-serif)',
                         fontSize: '1.375rem',
                         fontWeight: 500,
-                        color: '#F7F4EE',
+                        color: '#F5F5F5',
                         lineHeight: 1.2,
                       }}
                     >
@@ -303,7 +303,7 @@ export default function VehiclesSection() {
                           fontSize: '0.625rem',
                           fontWeight: 500,
                           letterSpacing: '0.08em',
-                          color: '#BDB8AD',
+                          color: 'rgba(245,245,245,0.55)',
                           padding: '0.25rem 0.625rem',
                           border: '1px solid #2A2A2A',
                           background: '#111',
@@ -350,7 +350,7 @@ export default function VehiclesSection() {
             style={{
               fontFamily: 'var(--font-sans)',
               fontSize: '0.875rem',
-              color: '#BDB8AD',
+              color: 'rgba(245,245,245,0.55)',
               marginBottom: '1.25rem',
             }}
           >

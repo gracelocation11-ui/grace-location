@@ -25,7 +25,7 @@ export default function PartnersSection() {
   return (
     <section
       id="partenaires"
-      style={{ padding: '6rem 0', background: '#080808', position: 'relative', overflow: 'hidden' }}
+      style={{ padding: '6rem 0', background: '#0A0A0A', position: 'relative', overflow: 'hidden' }}
     >
       {/* ── MARQUEE STRIP ── */}
       <div
@@ -67,7 +67,7 @@ export default function PartnersSection() {
                   fontWeight: 600,
                   letterSpacing: '0.18em',
                   textTransform: 'uppercase',
-                  color: '#BDB8AD',
+                  color: 'rgba(245,245,245,0.55)',
                 }}
               >
                 {p.name}
@@ -104,7 +104,7 @@ export default function PartnersSection() {
               fontFamily: 'var(--font-serif)',
               fontSize: 'clamp(2rem, 4vw, 3rem)',
               fontWeight: 500,
-              color: '#F7F4EE',
+              color: '#F5F5F5',
               lineHeight: 1.1,
             }}
           >
@@ -196,7 +196,7 @@ function PartnerCard({
         ease: [0.22, 1, 0.36, 1],
       }}
       style={{
-        background: '#080808',
+        background: '#0A0A0A',
         padding: '1.75rem 1rem',
         textAlign: 'center',
         display: 'flex',
@@ -209,10 +209,10 @@ function PartnerCard({
       }}
       onMouseEnter={(e) => {
         ;(e.currentTarget as HTMLElement).style.background = '#0f0f0f'
-        ;(e.currentTarget as HTMLElement).style.borderBottomColor = '#C9A84C'
+        ;(e.currentTarget as HTMLElement).style.borderBottomColor = 'var(--gold)'
       }}
       onMouseLeave={(e) => {
-        ;(e.currentTarget as HTMLElement).style.background = '#080808'
+        ;(e.currentTarget as HTMLElement).style.background = '#0A0A0A'
         ;(e.currentTarget as HTMLElement).style.borderBottomColor = 'transparent'
       }}
     >
@@ -222,7 +222,7 @@ function PartnerCard({
           fontFamily: 'var(--font-sans)',
           fontSize: '0.75rem',
           fontWeight: 600,
-          color: '#F7F4EE',
+          color: '#F5F5F5',
           letterSpacing: '0.04em',
         }}
       >
@@ -233,7 +233,7 @@ function PartnerCard({
           fontFamily: 'var(--font-sans)',
           fontSize: '0.5625rem',
           fontWeight: 400,
-          color: '#BDB8AD',
+          color: 'rgba(245,245,245,0.55)',
           letterSpacing: '0.12em',
           textTransform: 'uppercase',
         }}

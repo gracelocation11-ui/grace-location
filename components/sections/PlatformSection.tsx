@@ -42,7 +42,7 @@ export default function PlatformSection() {
       id="platform"
       style={{
         padding: '7rem 1.5rem',
-        background: '#080808',
+        background: '#0A0A0A',
         position: 'relative',
         overflow: 'hidden',
       }}
@@ -80,7 +80,7 @@ export default function PlatformSection() {
               fontFamily: 'var(--font-serif)',
               fontSize: 'clamp(2rem, 4vw, 3.75rem)',
               fontWeight: 500,
-              color: '#F7F4EE',
+              color: '#F5F5F5',
               lineHeight: 1.1,
               maxWidth: '20ch',
               margin: '0 auto 1.25rem',
@@ -92,7 +92,7 @@ export default function PlatformSection() {
             style={{
               fontFamily: 'var(--font-sans)',
               fontSize: '1rem',
-              color: '#BDB8AD',
+              color: 'rgba(245,245,245,0.55)',
               maxWidth: '52ch',
               margin: '0 auto',
               lineHeight: 1.7,
@@ -125,7 +125,7 @@ export default function PlatformSection() {
                 ease: [0.22, 1, 0.36, 1],
               }}
               style={{
-                background: '#080808',
+                background: '#0A0A0A',
                 padding: '2.5rem 2rem',
                 position: 'relative',
                 overflow: 'hidden',
@@ -134,7 +134,7 @@ export default function PlatformSection() {
                 ;(e.currentTarget as HTMLElement).style.background = '#0f0f0f'
               }}
               onMouseLeave={(e) => {
-                ;(e.currentTarget as HTMLElement).style.background = '#080808'
+                ;(e.currentTarget as HTMLElement).style.background = '#0A0A0A'
               }}
             >
               {/* Icon */}
@@ -148,7 +148,7 @@ export default function PlatformSection() {
                   justifyContent: 'center',
                   marginBottom: '1.5rem',
                   fontSize: '1.25rem',
-                  color: '#C9A84C',
+                  color: 'var(--gold)',
                 }}
               >
                 {pillar.icon}
@@ -159,7 +159,7 @@ export default function PlatformSection() {
                 style={{
                   width: '24px',
                   height: '1px',
-                  background: '#C9A84C',
+                  background: 'var(--gold)',
                   marginBottom: '1rem',
                 }}
               />
@@ -169,7 +169,7 @@ export default function PlatformSection() {
                   fontFamily: 'var(--font-serif)',
                   fontSize: '1.375rem',
                   fontWeight: 500,
-                  color: '#F7F4EE',
+                  color: '#F5F5F5',
                   marginBottom: '0.75rem',
                 }}
               >
@@ -179,7 +179,7 @@ export default function PlatformSection() {
                 style={{
                   fontFamily: 'var(--font-sans)',
                   fontSize: '0.875rem',
-                  color: '#BDB8AD',
+                  color: 'rgba(245,245,245,0.55)',
                   lineHeight: 1.7,
                 }}
               >
@@ -248,7 +248,7 @@ export default function PlatformSection() {
               style={{
                 width: '32px',
                 height: '1px',
-                background: '#C9A84C',
+                background: 'var(--gold)',
               }}
             />
             <span
@@ -258,7 +258,7 @@ export default function PlatformSection() {
                 fontWeight: 600,
                 letterSpacing: '0.12em',
                 textTransform: 'uppercase',
-                color: '#C9A84C',
+                color: 'var(--gold)',
               }}
             >
               La Vision E-Shepha
@@ -267,7 +267,7 @@ export default function PlatformSection() {
               style={{
                 width: '32px',
                 height: '1px',
-                background: '#C9A84C',
+                background: 'var(--gold)',
               }}
             />
           </footer>
@@ -292,7 +292,7 @@ export default function PlatformSection() {
             <div
               key={stat.label}
               style={{
-                background: '#080808',
+                background: '#0A0A0A',
                 padding: '2rem 1rem',
                 textAlign: 'center',
               }}
@@ -302,7 +302,7 @@ export default function PlatformSection() {
                   fontFamily: 'var(--font-serif)',
                   fontSize: 'clamp(1.75rem, 3vw, 2.5rem)',
                   fontWeight: 600,
-                  color: '#C9A84C',
+                  color: 'var(--gold)',
                   lineHeight: 1,
                   marginBottom: '0.375rem',
                 }}
@@ -316,7 +316,7 @@ export default function PlatformSection() {
                   fontWeight: 400,
                   letterSpacing: '0.1em',
                   textTransform: 'uppercase',
-                  color: '#BDB8AD',
+                  color: 'rgba(245,245,245,0.55)',
                 }}
               >
                 {stat.label}

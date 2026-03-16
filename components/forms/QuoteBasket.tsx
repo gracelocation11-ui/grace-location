@@ -141,11 +141,11 @@ export default function QuoteBasket({ items, onRemove, onUpdateQty }: QuoteBaske
       <div style={{ background: '#0f0f0f', border: '1px solid #1A1A1A' }}>
         {/* Header */}
         <div style={{ padding: '1.25rem 1.5rem', borderBottom: '1px solid #1A1A1A', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', fontWeight: 500, color: '#F7F4EE', margin: 0 }}>
+          <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', fontWeight: 500, color: '#F5F5F5', margin: 0 }}>
             Votre Devis
           </h3>
           {items.length > 0 && (
-            <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.625rem', fontWeight: 700, letterSpacing: '0.12em', background: '#C9A84C', color: '#080808', padding: '0.2rem 0.5rem' }}>
+            <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.625rem', fontWeight: 700, letterSpacing: '0.12em', background: 'var(--gold)', color: '#0A0A0A', padding: '0.2rem 0.5rem' }}>
               {items.length} article{items.length > 1 ? 's' : ''}
             </span>
           )}
@@ -155,7 +155,7 @@ export default function QuoteBasket({ items, onRemove, onUpdateQty }: QuoteBaske
         <div style={{ padding: '1rem 1.5rem', minHeight: '80px' }}>
           <AnimatePresence>
             {items.length === 0 ? (
-              <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.8125rem', color: '#BDB8AD', textAlign: 'center', padding: '1rem 0', opacity: 0.6 }}>
+              <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.8125rem', color: 'rgba(245,245,245,0.55)', textAlign: 'center', padding: '1rem 0', opacity: 0.6 }}>
                 Sélectionnez des articles →
               </p>
             ) : (
@@ -168,21 +168,21 @@ export default function QuoteBasket({ items, onRemove, onUpdateQty }: QuoteBaske
                   style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.625rem 0', borderBottom: '1px solid #1A1A1A', gap: '0.5rem' }}
                 >
                   <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ fontFamily: 'var(--font-sans)', fontSize: '0.75rem', color: '#F7F4EE', fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                    <div style={{ fontFamily: 'var(--font-sans)', fontSize: '0.75rem', color: '#F5F5F5', fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                       {item.name}
                     </div>
-                    <div style={{ fontFamily: 'var(--font-sans)', fontSize: '0.625rem', color: '#BDB8AD' }}>
+                    <div style={{ fontFamily: 'var(--font-sans)', fontSize: '0.625rem', color: 'rgba(245,245,245,0.55)' }}>
                       {formatPrice(item.price, 'FCFA', { compact: true })} / {item.unit}
                     </div>
                   </div>
                   {/* Qty */}
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', border: '1px solid #2A2A2A', padding: '0.125rem 0.25rem' }}>
-                    <button onClick={() => onUpdateQty(item.id, -1)} style={{ background: 'none', border: 'none', color: '#C9A84C', fontSize: '1rem', cursor: 'pointer', lineHeight: 1, padding: '0 0.25rem', minHeight: '40px', minWidth: '36px', touchAction: 'manipulation' }}>−</button>
-                    <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.75rem', color: '#F7F4EE', minWidth: '1.25rem', textAlign: 'center' }}>{item.quantity}</span>
-                    <button onClick={() => onUpdateQty(item.id, 1)} style={{ background: 'none', border: 'none', color: '#C9A84C', fontSize: '1rem', cursor: 'pointer', lineHeight: 1, padding: '0 0.25rem', minHeight: '40px', minWidth: '36px', touchAction: 'manipulation' }}>+</button>
+                    <button onClick={() => onUpdateQty(item.id, -1)} style={{ background: 'none', border: 'none', color: 'var(--gold)', fontSize: '1rem', cursor: 'pointer', lineHeight: 1, padding: '0 0.25rem', minHeight: '40px', minWidth: '36px', touchAction: 'manipulation' }}>−</button>
+                    <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.75rem', color: '#F5F5F5', minWidth: '1.25rem', textAlign: 'center' }}>{item.quantity}</span>
+                    <button onClick={() => onUpdateQty(item.id, 1)} style={{ background: 'none', border: 'none', color: 'var(--gold)', fontSize: '1rem', cursor: 'pointer', lineHeight: 1, padding: '0 0.25rem', minHeight: '40px', minWidth: '36px', touchAction: 'manipulation' }}>+</button>
                   </div>
                   {/* Total */}
-                  <div style={{ fontFamily: 'var(--font-serif)', fontSize: '0.875rem', fontWeight: 600, color: '#C9A84C', flexShrink: 0 }}>
+                  <div style={{ fontFamily: 'var(--font-serif)', fontSize: '0.875rem', fontWeight: 600, color: 'var(--gold)', flexShrink: 0 }}>
                     {formatPrice(item.price * item.quantity, 'FCFA', { compact: true })}
                   </div>
                   {/* Remove */}
@@ -197,18 +197,18 @@ export default function QuoteBasket({ items, onRemove, onUpdateQty }: QuoteBaske
 
         {/* Totals */}
         {items.length > 0 && (
-          <div style={{ padding: '0.75rem 1.5rem', borderTop: '1px solid #1A1A1A', background: '#080808' }}>
+          <div style={{ padding: '0.75rem 1.5rem', borderTop: '1px solid #1A1A1A', background: '#0A0A0A' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.375rem' }}>
-              <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.75rem', color: '#BDB8AD' }}>Sous-total</span>
-              <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.75rem', color: '#F7F4EE' }}>{formatPrice(subtotal, 'FCFA', { compact: true })}</span>
+              <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.75rem', color: 'rgba(245,245,245,0.55)' }}>Sous-total</span>
+              <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.75rem', color: '#F5F5F5' }}>{formatPrice(subtotal, 'FCFA', { compact: true })}</span>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.625rem' }}>
-              <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.75rem', color: '#BDB8AD' }}>TVA (18%)</span>
-              <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.75rem', color: '#F7F4EE' }}>{formatPrice(tax, 'FCFA', { compact: true })}</span>
+              <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.75rem', color: 'rgba(245,245,245,0.55)' }}>TVA (18%)</span>
+              <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.75rem', color: '#F5F5F5' }}>{formatPrice(tax, 'FCFA', { compact: true })}</span>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px solid #2A2A2A', paddingTop: '0.625rem' }}>
-              <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.875rem', fontWeight: 700, color: '#C9A84C' }}>TOTAL TTC</span>
-              <span style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', fontWeight: 700, color: '#C9A84C' }}>{formatPrice(total, 'FCFA', { compact: true })}</span>
+              <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.875rem', fontWeight: 700, color: 'var(--gold)' }}>TOTAL TTC</span>
+              <span style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', fontWeight: 700, color: 'var(--gold)' }}>{formatPrice(total, 'FCFA', { compact: true })}</span>
             </div>
           </div>
         )}
@@ -244,10 +244,10 @@ export default function QuoteBasket({ items, onRemove, onUpdateQty }: QuoteBaske
             >
               {/* Modal Header */}
               <div style={{ padding: '1.5rem', borderBottom: '1px solid #1A1A1A', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 500, color: '#F7F4EE', margin: 0 }}>
+                <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 500, color: '#F5F5F5', margin: 0 }}>
                   {step === 1 ? 'Vos coordonnées' : step === 2 ? 'Coaching offert' : 'Devis envoyé !'}
                 </h3>
-                <button onClick={() => setModalOpen(false)} style={{ background: 'none', border: 'none', color: '#BDB8AD', fontSize: '1.25rem', cursor: 'pointer', lineHeight: 1 }}>×</button>
+                <button onClick={() => setModalOpen(false)} style={{ background: 'none', border: 'none', color: 'rgba(245,245,245,0.55)', fontSize: '1.25rem', cursor: 'pointer', lineHeight: 1 }}>×</button>
               </div>
 
               <div style={{ padding: '1.5rem' }}>
@@ -283,7 +283,7 @@ export default function QuoteBasket({ items, onRemove, onUpdateQty }: QuoteBaske
                 {/* Step 2 */}
                 {step === 2 && (
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                    <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.9375rem', color: '#BDB8AD', lineHeight: 1.6 }}>
+                    <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.9375rem', color: 'rgba(245,245,245,0.55)', lineHeight: 1.6 }}>
                       En plus de votre devis, souhaitez-vous bénéficier d&apos;un accompagnement gratuit ?
                     </p>
                     {[
@@ -292,14 +292,14 @@ export default function QuoteBasket({ items, onRemove, onUpdateQty }: QuoteBaske
                       { key: 'discovery', label: 'Appel découverte (30 min)' },
                       { key: 'none', label: 'Non merci, juste le devis' },
                     ].map(opt => (
-                      <label key={opt.key} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer', padding: '0.875rem', border: `1px solid ${coachingOptions[opt.key as keyof typeof coachingOptions] ? '#C9A84C' : '#2A2A2A'}`, background: coachingOptions[opt.key as keyof typeof coachingOptions] ? '#0f0f0a' : 'transparent', transition: 'all 0.2s' }}>
+                      <label key={opt.key} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer', padding: '0.875rem', border: `1px solid ${coachingOptions[opt.key as keyof typeof coachingOptions] ? 'var(--gold)' : '#2A2A2A'}`, background: coachingOptions[opt.key as keyof typeof coachingOptions] ? '#0f0f0a' : 'transparent', transition: 'all 0.2s' }}>
                         <input
                           type="checkbox"
                           checked={coachingOptions[opt.key as keyof typeof coachingOptions]}
                           onChange={e => setCoachingOptions(prev => ({ ...prev, [opt.key]: e.target.checked }))}
-                          style={{ accentColor: '#C9A84C', width: '16px', height: '16px' }}
+                          style={{ accentColor: 'var(--gold)', width: '16px', height: '16px' }}
                         />
-                        <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.875rem', color: '#F7F4EE' }}>{opt.label}</span>
+                        <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.875rem', color: '#F5F5F5' }}>{opt.label}</span>
                       </label>
                     ))}
                     <div style={{ display: 'flex', gap: '0.75rem', marginTop: '0.5rem' }}>
@@ -315,13 +315,13 @@ export default function QuoteBasket({ items, onRemove, onUpdateQty }: QuoteBaske
                 {step === 3 && (
                   <div style={{ textAlign: 'center', padding: '2rem 0' }}>
                     <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>✦</div>
-                    <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.75rem', fontWeight: 500, color: '#F7F4EE', marginBottom: '0.5rem' }}>
+                    <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.75rem', fontWeight: 500, color: '#F5F5F5', marginBottom: '0.5rem' }}>
                       Votre devis a été envoyé !
                     </h4>
-                    <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.8125rem', color: '#C9A84C', marginBottom: '0.5rem', letterSpacing: '0.1em' }}>
+                    <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.8125rem', color: 'var(--gold)', marginBottom: '0.5rem', letterSpacing: '0.1em' }}>
                       Référence : {quoteRef}
                     </p>
-                    <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.875rem', color: '#BDB8AD', lineHeight: 1.7, marginBottom: '2rem', maxWidth: '36ch', margin: '0 auto 2rem' }}>
+                    <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.875rem', color: 'rgba(245,245,245,0.55)', lineHeight: 1.7, marginBottom: '2rem', maxWidth: '36ch', margin: '0 auto 2rem' }}>
                       Notre équipe vous contactera dans les 24h.
                     </p>
                     <a

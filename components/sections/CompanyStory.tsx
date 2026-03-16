@@ -101,7 +101,7 @@ export default function CompanyStory() {
   const shown = expanded ? TIMELINE : TIMELINE.slice(0, VISIBLE)
 
   return (
-    <section style={{ padding: '5rem 1.5rem', background: '#080808' }}>
+    <section style={{ padding: '5rem 1.5rem', background: '#0A0A0A' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
         {/* Label + Title */}
         <div className="section-label" style={{ marginBottom: '1rem' }}>
@@ -111,7 +111,7 @@ export default function CompanyStory() {
           fontFamily: 'var(--font-serif)',
           fontSize: 'clamp(2rem, 4vw, 3.5rem)',
           fontWeight: 500,
-          color: '#F7F4EE',
+          color: '#F5F5F5',
           marginBottom: '0.5rem',
           letterSpacing: '-0.02em',
         }}>
@@ -120,7 +120,7 @@ export default function CompanyStory() {
         <p style={{
           fontFamily: 'var(--font-sans)',
           fontSize: '0.9375rem',
-          color: '#BDB8AD',
+          color: 'rgba(245,245,245,0.55)',
           lineHeight: 1.7,
           marginBottom: '3rem',
           maxWidth: '60ch',
@@ -146,7 +146,7 @@ export default function CompanyStory() {
               top: '0.75rem',
               bottom: '0.75rem',
               width: '1px',
-              background: 'linear-gradient(to bottom, #C9A84C, rgba(201,168,76,0.05))',
+              background: 'linear-gradient(to bottom, var(--gold), rgba(201,168,76,0.05))',
               pointerEvents: 'none',
             }} />
 
@@ -171,7 +171,7 @@ export default function CompanyStory() {
                     fontFamily: 'var(--font-serif)',
                     fontSize: '0.875rem',
                     fontWeight: 600,
-                    color: entry.highlight ? '#C9A84C' : '#BDB8AD',
+                    color: entry.highlight ? 'var(--gold)' : 'rgba(245,245,245,0.55)',
                     flexShrink: 0,
                     width: '5.5rem',
                     textAlign: 'right',
@@ -187,13 +187,13 @@ export default function CompanyStory() {
                     width: entry.highlight ? '10px' : '7px',
                     height: entry.highlight ? '10px' : '7px',
                     borderRadius: '50%',
-                    background: entry.highlight ? '#C9A84C' : '#2A2A2A',
-                    border: entry.highlight ? 'none' : '1px solid #C9A84C44',
+                    background: entry.highlight ? 'var(--gold)' : '#2A2A2A',
+                    border: entry.highlight ? 'none' : '1px solid var(--gold)44',
                     flexShrink: 0,
                     marginTop: '5px',
                     position: 'relative',
                     zIndex: 1,
-                    boxShadow: entry.highlight ? '0 0 8px #C9A84C55' : 'none',
+                    boxShadow: entry.highlight ? '0 0 8px var(--gold)55' : 'none',
                   }} />
 
                   {/* Content */}
@@ -201,7 +201,7 @@ export default function CompanyStory() {
                     <p style={{
                       fontFamily: 'var(--font-sans)',
                       fontSize: '0.875rem',
-                      color: entry.highlight ? '#F7F4EE' : '#BDB8AD',
+                      color: entry.highlight ? '#F5F5F5' : 'rgba(245,245,245,0.55)',
                       fontWeight: entry.highlight ? 500 : 400,
                       lineHeight: 1.5,
                       margin: 0,
@@ -224,7 +224,7 @@ export default function CompanyStory() {
                             listStyle: 'none',
                             paddingLeft: 0,
                           }}>
-                            <span style={{ color: '#C9A84C44', marginRight: '0.375rem' }}>—</span>
+                            <span style={{ color: 'var(--gold)44', marginRight: '0.375rem' }}>—</span>
                             {item}
                           </li>
                         ))}
@@ -243,7 +243,7 @@ export default function CompanyStory() {
                   marginTop: '1.5rem',
                   background: 'none',
                   border: '1px solid #2A2A2A',
-                  color: '#C9A84C',
+                  color: 'var(--gold)',
                   fontFamily: 'var(--font-sans)',
                   fontSize: '0.75rem',
                   fontWeight: 600,
@@ -255,7 +255,7 @@ export default function CompanyStory() {
                   minHeight: '44px',
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = '#C9A84C'
+                  e.currentTarget.style.borderColor = 'var(--gold)'
                   e.currentTarget.style.background = 'rgba(201,168,76,0.05)'
                 }}
                 onMouseLeave={(e) => {
@@ -279,26 +279,26 @@ export default function CompanyStory() {
             {/* Quote box */}
             <div style={{
               border: '1px solid #2A2A2A',
-              borderLeft: '3px solid #C9A84C',
+              borderLeft: '3px solid var(--gold)',
               padding: '2rem',
               background: '#0a0a0a',
             }}>
               <p style={{
                 fontFamily: 'var(--font-sans)',
                 fontSize: '0.9375rem',
-                color: '#F7F4EE',
+                color: '#F5F5F5',
                 lineHeight: 1.8,
                 marginBottom: '1.25rem',
               }}>
                 Née en 2006, Grâce Location a équipé plus de 500 événements au Gabon.
                 Aujourd&apos;hui, cette expertise devient E-Shepha Event.
               </p>
-              <div style={{ width: '32px', height: '1px', background: 'linear-gradient(90deg, #C9A84C, transparent)', marginBottom: '1.25rem' }} />
+              <div style={{ width: '32px', height: '1px', background: 'linear-gradient(90deg, var(--gold), transparent)', marginBottom: '1.25rem' }} />
               <p style={{
                 fontFamily: 'var(--font-serif)',
                 fontSize: '1.125rem',
                 fontStyle: 'italic',
-                color: '#C9A84C',
+                color: 'var(--gold)',
                 lineHeight: 1.6,
                 margin: 0,
               }}>
@@ -331,7 +331,7 @@ export default function CompanyStory() {
                   fontFamily: 'var(--font-serif)',
                   fontSize: '2rem',
                   fontWeight: 600,
-                  color: '#C9A84C',
+                  color: 'var(--gold)',
                   lineHeight: 1,
                   flexShrink: 0,
                 }}>
@@ -340,7 +340,7 @@ export default function CompanyStory() {
                 <div style={{
                   fontFamily: 'var(--font-sans)',
                   fontSize: '0.8125rem',
-                  color: '#BDB8AD',
+                  color: 'rgba(245,245,245,0.55)',
                   lineHeight: 1.4,
                 }}>
                   {s.label}

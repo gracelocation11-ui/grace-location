@@ -19,7 +19,7 @@ const ITEMS = [...PARTNERS, ...PARTNERS]
 
 export default function PartnersLogoMarquee() {
   return (
-    <section style={{ padding: '5rem 0 4rem', background: '#080808', borderTop: '1px solid #1A1A1A', overflow: 'hidden' }}>
+    <section style={{ padding: '5rem 0 4rem', background: '#0A0A0A', borderTop: '1px solid #1A1A1A', overflow: 'hidden' }}>
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}
@@ -35,7 +35,7 @@ export default function PartnersLogoMarquee() {
           fontFamily: 'var(--font-serif)',
           fontSize: 'clamp(1.5rem, 3vw, 2.25rem)',
           fontWeight: 500,
-          color: '#F7F4EE',
+          color: '#F5F5F5',
           margin: 0,
         }}>
           Ils nous font confiance
@@ -47,12 +47,12 @@ export default function PartnersLogoMarquee() {
         {/* Fade edges */}
         <div style={{
           position: 'absolute', left: 0, top: 0, bottom: 0, width: '120px', zIndex: 2,
-          background: 'linear-gradient(90deg, #080808, transparent)',
+          background: 'linear-gradient(90deg, #0A0A0A, transparent)',
           pointerEvents: 'none',
         }} />
         <div style={{
           position: 'absolute', right: 0, top: 0, bottom: 0, width: '120px', zIndex: 2,
-          background: 'linear-gradient(-90deg, #080808, transparent)',
+          background: 'linear-gradient(-90deg, #0A0A0A, transparent)',
           pointerEvents: 'none',
         }} />
 
@@ -79,12 +79,12 @@ export default function PartnersLogoMarquee() {
                 height: '40px',
                 borderRadius: '50%',
                 background: 'linear-gradient(135deg, #1A1A1A, #2A2A2A)',
-                border: '1px solid #C9A84C33',
+                border: '1px solid var(--gold)33',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
               }}>
-                <span style={{ color: '#C9A84C', fontSize: '0.5rem', fontWeight: 700, letterSpacing: '0.05em' }}>
+                <span style={{ color: 'var(--gold)', fontSize: '0.5rem', fontWeight: 700, letterSpacing: '0.05em' }}>
                   {p.abbr.slice(0, 2)}
                 </span>
               </div>
@@ -94,7 +94,7 @@ export default function PartnersLogoMarquee() {
                 fontWeight: 600,
                 letterSpacing: '0.12em',
                 textTransform: 'uppercase',
-                color: '#BDB8AD',
+                color: 'rgba(245,245,245,0.55)',
                 textAlign: 'center',
                 whiteSpace: 'nowrap',
               }}>

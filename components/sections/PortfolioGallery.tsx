@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 interface Photo {
   src: string
   alt: string
-  size?: 'normal' | 'tall'
+  size?: 'normal' | 'tall' | string
 }
 
 interface Props {

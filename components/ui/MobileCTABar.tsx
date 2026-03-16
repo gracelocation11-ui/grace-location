@@ -13,7 +13,6 @@ export default function MobileCTABar() {
           left: 0,
           right: 0,
           zIndex: 100,
-          height: '64px',
           background: 'rgba(8,8,8,0.97)',
           borderTop: '1px solid rgba(201,168,76,0.2)',
           backdropFilter: 'blur(12px)',
@@ -22,6 +21,8 @@ export default function MobileCTABar() {
           alignItems: 'center',
           gap: '0.75rem',
           padding: '0 1rem',
+          paddingBottom: 'env(safe-area-inset-bottom, 0px)',
+          minHeight: '64px',
         }}
         className="lg-hidden"
       >

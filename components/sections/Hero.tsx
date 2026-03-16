@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 import Marquee from '@/components/ui/Marquee'
 
 
@@ -172,12 +173,12 @@ export default function Hero() {
           variants={fadeUp}
         >
           <div className="hero-ctas">
-            <a href="/devis" className="btn-gold hero-btn">
+            <Link href="/devis" className="btn-gold hero-btn">
               Devis gratuit
-            </a>
-            <a href="/e-shepha-event" className="btn-outline hero-btn">
+            </Link>
+            <Link href="/e-shepha-event" className="btn-outline hero-btn">
               Découvrir E-Shepha
-            </a>
+            </Link>
             <a
               href="https://wa.me/24106203965?text=Bonjour%20E-Shepha%20Event%20!%20Je%20souhaite%20obtenir%20des%20informations."
               target="_blank"
@@ -195,6 +196,7 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
           variants={fadeUp}
+          data-stats
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(4, 1fr)',

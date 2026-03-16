@@ -177,16 +177,16 @@ export default function QuoteBasket({ items, onRemove, onUpdateQty }: QuoteBaske
                   </div>
                   {/* Qty */}
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', border: '1px solid #2A2A2A', padding: '0.125rem 0.25rem' }}>
-                    <button onClick={() => onUpdateQty(item.id, -1)} style={{ background: 'none', border: 'none', color: '#C9A84C', fontSize: '1rem', cursor: 'pointer', lineHeight: 1, padding: '0 0.125rem', minHeight: '24px', minWidth: '24px' }}>−</button>
+                    <button onClick={() => onUpdateQty(item.id, -1)} style={{ background: 'none', border: 'none', color: '#C9A84C', fontSize: '1rem', cursor: 'pointer', lineHeight: 1, padding: '0 0.25rem', minHeight: '40px', minWidth: '36px', touchAction: 'manipulation' }}>−</button>
                     <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.75rem', color: '#F7F4EE', minWidth: '1.25rem', textAlign: 'center' }}>{item.quantity}</span>
-                    <button onClick={() => onUpdateQty(item.id, 1)} style={{ background: 'none', border: 'none', color: '#C9A84C', fontSize: '1rem', cursor: 'pointer', lineHeight: 1, padding: '0 0.125rem', minHeight: '24px', minWidth: '24px' }}>+</button>
+                    <button onClick={() => onUpdateQty(item.id, 1)} style={{ background: 'none', border: 'none', color: '#C9A84C', fontSize: '1rem', cursor: 'pointer', lineHeight: 1, padding: '0 0.25rem', minHeight: '40px', minWidth: '36px', touchAction: 'manipulation' }}>+</button>
                   </div>
                   {/* Total */}
                   <div style={{ fontFamily: 'var(--font-serif)', fontSize: '0.875rem', fontWeight: 600, color: '#C9A84C', flexShrink: 0 }}>
                     {formatPrice(item.price * item.quantity, 'FCFA', { compact: true })}
                   </div>
                   {/* Remove */}
-                  <button onClick={() => onRemove(item.id)} style={{ background: 'none', border: 'none', color: '#2A2A2A', fontSize: '0.875rem', cursor: 'pointer', padding: '0 0.125rem', lineHeight: 1, transition: 'color 0.2s', minHeight: '24px', minWidth: '24px' }} onMouseEnter={e => (e.currentTarget.style.color = '#EF4444')} onMouseLeave={e => (e.currentTarget.style.color = '#2A2A2A')}>
+                  <button onClick={() => onRemove(item.id)} style={{ background: 'none', border: 'none', color: '#2A2A2A', fontSize: '1rem', cursor: 'pointer', padding: '0.25rem 0.375rem', lineHeight: 1, transition: 'color 0.2s', minHeight: '40px', minWidth: '36px', touchAction: 'manipulation' }} onMouseEnter={e => (e.currentTarget.style.color = '#EF4444')} onMouseLeave={e => (e.currentTarget.style.color = '#2A2A2A')}>
                     ×
                   </button>
                 </motion.div>

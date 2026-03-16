@@ -388,20 +388,21 @@ input, textarea, select {
   pointer-events: all !important;
 }
 
-/* ─── MOBILE TAP AREA EXTENSION ──────────────────── */
-/* Agrandit la zone de tap sans affecter le layout visuel */
+/* ─── MOBILE TAP AREA ────────────────────────────── */
+/* Ensure adequate touch targets — no ::after extension that blocks neighbors */
+button {
+  min-height: 44px;
+  min-width: 44px;
+}
+
 @media (max-width: 1024px) {
-  button {
-    position: relative;
-  }
-  button::after {
-    content: '';
-    position: absolute;
-    inset: -8px;
-  }
   /* Marquees : indique au GPU qu'ils vont bouger */
   .animate-marquee,
   .animate-marquee-reverse {
     will-change: transform;
+  }
+  /* WhatsApp FAB — raise above the 64px mobile CTA bar */
+  .wa-float-wrapper {
+    bottom: calc(64px + env(safe-area-inset-bottom, 0px) + 0.75rem) !important;
   }
 }

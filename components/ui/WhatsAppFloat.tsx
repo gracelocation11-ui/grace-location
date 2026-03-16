@@ -111,11 +111,12 @@ export default function WhatsAppFloat() {
   return (
     <div
       ref={popupRef}
+      className="wa-float-wrapper"
       style={{
         position: 'fixed',
         bottom: '1.75rem',
         right: '1.75rem',
-        zIndex: 100,
+        zIndex: 101,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-end',

@@ -278,6 +278,11 @@ export default function Footer() {
             grid-template-columns: 1fr !important;
           }
         }
+        @media (max-width: 1023px) {
+          footer {
+            padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px)) !important;
+          }
+        }
       `}</style>
     </footer>
   )

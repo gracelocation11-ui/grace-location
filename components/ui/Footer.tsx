@@ -44,8 +44,8 @@ export default function Footer() {
   return (
     <footer
       style={{
-        background: '#0A0A0A',
-        borderTop: '2px solid var(--gold)',
+        background: '#050505',
+        borderTop: '1px solid #1A1A1A',
         padding: '5rem 1.5rem 2rem',
       }}
     >
@@ -66,11 +66,11 @@ export default function Footer() {
             <Link href="/" style={{ textDecoration: 'none', display: 'inline-block', marginBottom: '1.25rem' }}>
               <div
                 style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: '1.125rem',
-                  fontWeight: 700,
-                  letterSpacing: '0.15em',
-                  color: 'var(--gold)',
+                  fontFamily: 'var(--font-serif)',
+                  fontSize: '1.375rem',
+                  fontWeight: 600,
+                  letterSpacing: '0.04em',
+                  color: '#C9A84C',
                   textTransform: 'uppercase',
                   lineHeight: 1,
                   marginBottom: '4px',
@@ -84,7 +84,7 @@ export default function Footer() {
                   fontSize: '0.5625rem',
                   fontWeight: 400,
                   letterSpacing: '0.2em',
-                  color: 'rgba(245,245,245,0.35)',
+                  color: '#BDB8AD',
                   textTransform: 'uppercase',
                 }}
               >
@@ -96,7 +96,7 @@ export default function Footer() {
               style={{
                 fontFamily: 'var(--font-sans)',
                 fontSize: '0.875rem',
-                color: 'rgba(245,245,245,0.55)',
+                color: '#BDB8AD',
                 lineHeight: 1.7,
                 maxWidth: '28ch',
                 marginBottom: '1.5rem',
@@ -152,8 +152,8 @@ export default function Footer() {
                     transition: 'border-color 0.25s ease, background 0.25s ease',
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = 'rgba(207,169,72,0.4)'
-                    e.currentTarget.style.background = 'rgba(207,169,72,0.08)'
+                    e.currentTarget.style.borderColor = '#C9A84C44'
+                    e.currentTarget.style.background = '#C9A84C11'
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.borderColor = '#2A2A2A'
@@ -176,7 +176,7 @@ export default function Footer() {
                   fontWeight: 700,
                   letterSpacing: '0.2em',
                   textTransform: 'uppercase',
-                  color: 'var(--gold)',
+                  color: '#C9A84C',
                   marginBottom: '1.25rem',
                 }}
               >
@@ -233,7 +233,7 @@ export default function Footer() {
               maxWidth: '200px',
               backgroundImage: `repeating-linear-gradient(
                 90deg,
-                var(--gold) 0px, var(--gold) 6px,
+                #C9A84C 0px, #C9A84C 6px,
                 #2A2A2A 6px, #2A2A2A 12px,
                 #8B4513 12px, #8B4513 18px,
                 #2A2A2A 18px, #2A2A2A 24px
@@ -253,7 +253,7 @@ export default function Footer() {
                   transition: 'color 0.2s ease',
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.color = 'rgba(245,245,245,0.55)'
+                  e.currentTarget.style.color = '#BDB8AD'
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.color = '#2A2A2A'

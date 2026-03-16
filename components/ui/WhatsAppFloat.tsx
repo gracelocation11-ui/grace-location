@@ -174,7 +174,7 @@ export default function WhatsAppFloat() {
                 fontFamily: 'var(--font-sans)',
                 fontSize: '0.875rem',
                 fontWeight: 600,
-                color: '#F5F5F5',
+                color: '#F7F4EE',
               }}
             >
               E-Shepha Event
@@ -210,7 +210,7 @@ export default function WhatsAppFloat() {
               background: 'none',
               border: 'none',
               cursor: 'pointer',
-              color: 'rgba(245,245,245,0.55)',
+              color: '#BDB8AD',
               fontSize: '1.125rem',
               lineHeight: 1,
               padding: '0.25rem',
@@ -259,7 +259,7 @@ export default function WhatsAppFloat() {
                   padding: '0.625rem 0.875rem',
                   background: 'rgba(37,211,102,0.06)',
                   border: '1px solid rgba(37,211,102,0.15)',
-                  color: '#F5F5F5',
+                  color: '#F7F4EE',
                   fontFamily: 'var(--font-sans)',
                   fontSize: '0.8125rem',
                   textDecoration: 'none',
@@ -275,7 +275,7 @@ export default function WhatsAppFloat() {
                   e.currentTarget.style.borderColor = 'rgba(37,211,102,0.15)'
                 }}
               >
-                <span style={{ color: 'var(--gold)', fontSize: '0.75rem', flexShrink: 0 }}>
+                <span style={{ color: '#C9A84C', fontSize: '0.75rem', flexShrink: 0 }}>
                   {reply.icon}
                 </span>
                 <span>{reply.label}</span>

@@ -28,7 +28,7 @@ const GRADIENTS = [
   'linear-gradient(135deg, #18081a 0%, #280e2a 100%)',
 ]
 
-export default function PortfolioGallery({ photos, accent = 'var(--gold)', backHref = '/portfolio' }: Props) {
+export default function PortfolioGallery({ photos, accent = '#C9A84C', backHref = '/portfolio' }: Props) {
   const [lightbox, setLightbox] = useState<number | null>(null)
 
   const open = (i: number) => setLightbox(i)
@@ -38,7 +38,7 @@ export default function PortfolioGallery({ photos, accent = 'var(--gold)', backH
 
   return (
     <>
-      <section style={{ padding: '4rem 1.5rem 6rem', background: '#0A0A0A' }}>
+      <section style={{ padding: '4rem 1.5rem 6rem', background: '#080808' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
 
           {/* Back link */}
@@ -54,7 +54,7 @@ export default function PortfolioGallery({ photos, accent = 'var(--gold)', backH
               fontWeight: 600,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: 'rgba(245,245,245,0.55)',
+              color: '#BDB8AD',
               textDecoration: 'none',
               display: 'inline-flex',
               alignItems: 'center',
@@ -62,7 +62,7 @@ export default function PortfolioGallery({ photos, accent = 'var(--gold)', backH
               transition: 'color 0.2s ease',
             }}
               onMouseEnter={e => (e.currentTarget.style.color = accent)}
-              onMouseLeave={e => (e.currentTarget.style.color = 'rgba(245,245,245,0.55)')}
+              onMouseLeave={e => (e.currentTarget.style.color = '#BDB8AD')}
             >
               ← Portfolio
             </Link>
@@ -110,7 +110,7 @@ export default function PortfolioGallery({ photos, accent = 'var(--gold)', backH
                   <span style={{
                     fontFamily: 'var(--font-sans)',
                     fontSize: '0.6875rem',
-                    color: '#F5F5F5',
+                    color: '#F7F4EE',
                     letterSpacing: '0.06em',
                   }}>{photo.alt}</span>
                 </div>
@@ -167,7 +167,7 @@ export default function PortfolioGallery({ photos, accent = 'var(--gold)', backH
               style={{
                 position: 'absolute', top: '1.5rem', right: '1.5rem',
                 background: 'rgba(255,255,255,0.1)',
-                border: 'none', color: '#F5F5F5',
+                border: 'none', color: '#F7F4EE',
                 width: '40px', height: '40px',
                 cursor: 'pointer',
                 fontFamily: 'var(--font-sans)',
@@ -183,7 +183,7 @@ export default function PortfolioGallery({ photos, accent = 'var(--gold)', backH
                 position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)',
                 background: 'rgba(255,255,255,0.08)',
                 border: `1px solid ${accent}33`,
-                color: '#F5F5F5',
+                color: '#F7F4EE',
                 width: '44px', height: '44px',
                 cursor: 'pointer', fontSize: '1.125rem',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -217,7 +217,7 @@ export default function PortfolioGallery({ photos, accent = 'var(--gold)', backH
                 position: 'absolute', bottom: '-2rem', left: 0,
                 fontFamily: 'var(--font-sans)',
                 fontSize: '0.6875rem',
-                color: 'rgba(245,245,245,0.55)',
+                color: '#BDB8AD',
                 letterSpacing: '0.06em',
               }}>
                 {photos[lightbox].alt} — {lightbox + 1} / {photos.length}
@@ -231,7 +231,7 @@ export default function PortfolioGallery({ photos, accent = 'var(--gold)', backH
                 position: 'absolute', right: '1rem', top: '50%', transform: 'translateY(-50%)',
                 background: 'rgba(255,255,255,0.08)',
                 border: `1px solid ${accent}33`,
-                color: '#F5F5F5',
+                color: '#F7F4EE',
                 width: '44px', height: '44px',
                 cursor: 'pointer', fontSize: '1.125rem',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',

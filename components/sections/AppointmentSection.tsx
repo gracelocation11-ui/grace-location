@@ -13,7 +13,7 @@ export default function AppointmentSection() {
   return (
     <section
       id="rendez-vous"
-      style={{ padding: '7rem 1.5rem', background: '#0A0A0A', position: 'relative' }}
+      style={{ padding: '7rem 1.5rem', background: '#080808', position: 'relative' }}
     >
       <div
         style={{
@@ -40,7 +40,7 @@ export default function AppointmentSection() {
               fontFamily: 'var(--font-serif)',
               fontSize: 'clamp(2rem, 3.5vw, 3.25rem)',
               fontWeight: 500,
-              color: '#F5F5F5',
+              color: '#F7F4EE',
               lineHeight: 1.1,
               marginBottom: '1.25rem',
             }}
@@ -51,7 +51,7 @@ export default function AppointmentSection() {
             style={{
               fontFamily: 'var(--font-sans)',
               fontSize: '0.9375rem',
-              color: 'rgba(245,245,245,0.55)',
+              color: '#BDB8AD',
               lineHeight: 1.7,
               marginBottom: '3rem',
               maxWidth: '44ch',
@@ -98,7 +98,7 @@ export default function AppointmentSection() {
                       fontFamily: 'var(--font-sans)',
                       fontSize: '0.9375rem',
                       fontWeight: 600,
-                      color: '#F5F5F5',
+                      color: '#F7F4EE',
                       marginBottom: '0.25rem',
                     }}
                   >
@@ -108,7 +108,7 @@ export default function AppointmentSection() {
                     style={{
                       fontFamily: 'var(--font-sans)',
                       fontSize: '0.8125rem',
-                      color: 'rgba(245,245,245,0.55)',
+                      color: '#BDB8AD',
                       lineHeight: 1.6,
                       margin: 0,
                     }}
@@ -137,12 +137,12 @@ export default function AppointmentSection() {
               style={{
                 fontFamily: 'var(--font-sans)',
                 fontSize: '0.8125rem',
-                color: 'rgba(245,245,245,0.55)',
+                color: '#BDB8AD',
                 margin: 0,
                 lineHeight: 1.6,
               }}
             >
-              🕐 <strong style={{ color: '#F5F5F5' }}>Horaires :</strong> Lun – Sam, 09h00 – 17h00 (heure de Libreville, WAT/UTC+1)
+              🕐 <strong style={{ color: '#F7F4EE' }}>Horaires :</strong> Lun – Sam, 09h00 – 17h00 (heure de Libreville, WAT/UTC+1)
             </p>
           </motion.div>
         </motion.div>

@@ -1,8 +1,7 @@
 import type { Metadata, Viewport } from 'next'
-import { Cormorant_Garamond, Cinzel, Montserrat } from 'next/font/google'
+import { Cormorant_Garamond, Outfit } from 'next/font/google'
 import { Toaster } from 'react-hot-toast'
 import { Agentation } from 'agentation'
-import CustomCursor from '@/components/ui/CustomCursor'
 import './globals.css'
 
 /* ─── FONTS ─────────────────────────────────────────────── */
@@ -15,17 +14,9 @@ const cormorant = Cormorant_Garamond({
   preload: true,
 })
 
-const cinzel = Cinzel({
+const outfit = Outfit({
   subsets: ['latin'],
-  weight: ['400', '700', '900'],
-  variable: '--font-display',
-  display: 'swap',
-  preload: true,
-})
-
-const montserrat = Montserrat({
-  subsets: ['latin'],
-  weight: ['300', '400', '600', '700'],
+  weight: ['300', '400', '500', '600', '700'],
   variable: '--font-sans',
   display: 'swap',
   preload: true,
@@ -107,7 +98,7 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
-  themeColor: '#0A0A0A',
+  themeColor: '#080808',
 }
 
 /* ─── ROOT LAYOUT ────────────────────────────────────────── */
@@ -143,14 +134,14 @@ export default function RootLayout({
       <body
         className={`
           ${cormorant.variable}
-          ${cinzel.variable}
-          ${montserrat.variable}
+          ${outfit.variable}
           font-sans
+          bg-noir
+          text-cream
           antialiased
+          noise-overlay
         `}
-        style={{ background: '#0A0A0A', color: '#F5F5F5' }}
       >
-        <CustomCursor />
         {children}
 
         {process.env.NODE_ENV === 'development' && <Agentation />}

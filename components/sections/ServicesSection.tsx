@@ -19,7 +19,7 @@ const PILLARS: {
     title: 'Événements & Mariages',
     subtitle: 'De la conception au jour J',
     icon: '✦',
-    accentColor: 'var(--gold)',
+    accentColor: '#C9A84C',
   },
   {
     id: 'catering',
@@ -27,7 +27,7 @@ const PILLARS: {
     title: 'Catering Gastronomique',
     subtitle: 'Une symphonie de saveurs',
     icon: '◈',
-    accentColor: 'var(--gold)',
+    accentColor: '#C9A84C',
   },
   {
     id: 'vehicle_rental',
@@ -35,7 +35,7 @@ const PILLARS: {
     title: 'Location de Véhicules',
     subtitle: 'Flotte premium, style assuré',
     icon: '◉',
-    accentColor: 'var(--gold)',
+    accentColor: '#C9A84C',
   },
   {
     id: 'platform',
@@ -43,7 +43,7 @@ const PILLARS: {
     title: 'E-Shepha Platform',
     subtitle: 'Innovation digitale événementielle',
     icon: '◎',
-    accentColor: 'var(--gold)',
+    accentColor: '#C9A84C',
   },
 ]
 
@@ -58,7 +58,7 @@ export default function ServicesSection() {
       id="services"
       style={{
         padding: '7rem 1.5rem',
-        background: '#0A0A0A',
+        background: '#080808',
         position: 'relative',
       }}
     >
@@ -79,7 +79,7 @@ export default function ServicesSection() {
               fontFamily: 'var(--font-serif)',
               fontSize: 'clamp(2rem, 4vw, 3.5rem)',
               fontWeight: 500,
-              color: '#F5F5F5',
+              color: '#F7F4EE',
               lineHeight: 1.1,
               maxWidth: '18ch',
             }}
@@ -113,7 +113,7 @@ export default function ServicesSection() {
                   duration: 0.6,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                style={{ background: '#0A0A0A', position: 'relative', overflow: 'hidden' }}
+                style={{ background: '#080808', position: 'relative', overflow: 'hidden' }}
               >
                 {/* Gold accent line — animates on hover */}
                 <div
@@ -164,12 +164,12 @@ export default function ServicesSection() {
                         fontSize: '0.625rem',
                         fontWeight: 600,
                         letterSpacing: '0.2em',
-                        color: 'var(--gold)',
+                        color: '#C9A84C',
                       }}
                     >
                       {pillar.number}
                     </span>
-                    <span style={{ fontSize: '1.25rem', color: 'var(--gold)44' }}>
+                    <span style={{ fontSize: '1.25rem', color: '#C9A84C44' }}>
                       {pillar.icon}
                     </span>
                   </div>
@@ -180,7 +180,7 @@ export default function ServicesSection() {
                       fontFamily: 'var(--font-serif)',
                       fontSize: 'clamp(1.375rem, 2.5vw, 1.875rem)',
                       fontWeight: 500,
-                      color: '#F5F5F5',
+                      color: '#F7F4EE',
                       lineHeight: 1.2,
                       marginBottom: '0.5rem',
                     }}
@@ -191,7 +191,7 @@ export default function ServicesSection() {
                     style={{
                       fontFamily: 'var(--font-sans)',
                       fontSize: '0.875rem',
-                      color: 'rgba(245,245,245,0.55)',
+                      color: '#BDB8AD',
                       marginBottom: '1.5rem',
                     }}
                   >
@@ -209,7 +209,7 @@ export default function ServicesSection() {
                       fontWeight: 600,
                       letterSpacing: '0.12em',
                       textTransform: 'uppercase',
-                      color: 'var(--gold)',
+                      color: '#C9A84C',
                     }}
                   >
                     {isOpen ? 'Réduire' : 'Voir les services'}
@@ -267,7 +267,7 @@ export default function ServicesSection() {
                                     fontFamily: 'var(--font-sans)',
                                     fontSize: '0.875rem',
                                     fontWeight: 500,
-                                    color: '#F5F5F5',
+                                    color: '#F7F4EE',
                                     marginBottom: '0.25rem',
                                   }}
                                 >
@@ -277,7 +277,7 @@ export default function ServicesSection() {
                                   style={{
                                     fontFamily: 'var(--font-sans)',
                                     fontSize: '0.75rem',
-                                    color: 'rgba(245,245,245,0.55)',
+                                    color: '#BDB8AD',
                                     lineHeight: 1.5,
                                   }}
                                 >
@@ -291,7 +291,7 @@ export default function ServicesSection() {
                                       style={{
                                         fontFamily: 'var(--font-sans)',
                                         fontSize: '0.625rem',
-                                        color: 'rgba(245,245,245,0.55)',
+                                        color: '#BDB8AD',
                                         letterSpacing: '0.08em',
                                         marginBottom: '2px',
                                       }}
@@ -303,7 +303,7 @@ export default function ServicesSection() {
                                         fontFamily: 'var(--font-serif)',
                                         fontSize: '1rem',
                                         fontWeight: 600,
-                                        color: 'var(--gold)',
+                                        color: '#C9A84C',
                                       }}
                                     >
                                       {formatPrice(svc.price.min, svc.price.currency, { compact: true })}
@@ -314,7 +314,7 @@ export default function ServicesSection() {
                                     style={{
                                       fontFamily: 'var(--font-sans)',
                                       fontSize: '0.6875rem',
-                                      color: 'var(--gold)',
+                                      color: '#C9A84C',
                                       letterSpacing: '0.08em',
                                     }}
                                   >

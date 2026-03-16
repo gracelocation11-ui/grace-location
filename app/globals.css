@@ -3,20 +3,19 @@
 
 /* ─── CUSTOM PROPERTIES ─────────────────────────────────── */
 :root {
-  --gold: #CFA948;
-  --gold-light: #E5C060;
-  --gold-dark: #A88530;
-  --noir: #0A0A0A;
+  --gold: #C9A84C;
+  --gold-light: #E0C068;
+  --gold-dark: #A8852A;
+  --noir: #080808;
   --noir-soft: #111111;
   --noir-light: #1A1A1A;
   --noir-border: #2A2A2A;
-  --cream: #F5F5F5;
-  --cream-dark: #E8E8E0;
-  --cream-muted: #BCBCB0;
+  --cream: #F7F4EE;
+  --cream-dark: #EDE8DE;
+  --cream-muted: #BDB8AD;
 
-  --font-display: var(--font-display, 'Cinzel', 'Trajan Pro', Georgia, serif);
   --font-serif: 'Cormorant Garamond', Georgia, serif;
-  --font-sans: var(--font-sans, 'Montserrat', system-ui, sans-serif);
+  --font-sans: 'Outfit', system-ui, sans-serif;
 
   --transition-luxury: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -41,13 +40,6 @@ body {
   font-family: var(--font-sans);
   line-height: 1.6;
   overflow-x: hidden;
-  cursor: none;
-}
-
-/* Restore default cursor on touch devices */
-@media (pointer: coarse) {
-  body { cursor: auto; }
-  *, *::before, *::after { cursor: auto !important; }
 }
 
 /* ─── CUSTOM SCROLLBAR ───────────────────────────────────── */
@@ -404,42 +396,13 @@ button {
 }
 
 @media (max-width: 1024px) {
+  /* Marquees : indique au GPU qu'ils vont bouger */
   .animate-marquee,
   .animate-marquee-reverse {
     will-change: transform;
   }
+  /* WhatsApp FAB — raise above the 64px mobile CTA bar */
   .wa-float-wrapper {
     bottom: calc(64px + env(safe-area-inset-bottom, 0px) + 0.75rem) !important;
   }
-}
-
-/* ─── SCROLL REVEAL ──────────────────────────────── */
-.reveal {
-  opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 0.75s var(--transition-luxury), transform 0.75s var(--transition-luxury);
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
-
-/* ─── LUXURY HEADING UTIL ────────────────────────── */
-.heading-display {
-  font-family: var(--font-display);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-/* ─── HERO CINEMATIC ZOOM ────────────────────────── */
-@keyframes heroZoom {
-  from { transform: scale(1.04); }
-  to   { transform: scale(1.12); }
-}
-.hero-bg-zoom {
-  animation: heroZoom 22s ease-in-out infinite alternate;
-  will-change: transform;
 }

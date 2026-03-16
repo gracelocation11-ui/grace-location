@@ -42,7 +42,7 @@ function TestimonialCard({ t, index }: { t: typeof TESTIMONIALS[0]; index: numbe
       onHoverEnd={() => setHovered(false)}
       style={{
         background: '#111111',
-        border: `1px solid ${hovered ? 'var(--gold)' : '#1A1A1A'}`,
+        border: `1px solid ${hovered ? '#C9A84C' : '#1A1A1A'}`,
         padding: '2rem',
         position: 'relative',
         transition: 'border-color 0.3s ease, box-shadow 0.3s ease',
@@ -57,7 +57,7 @@ function TestimonialCard({ t, index }: { t: typeof TESTIMONIALS[0]; index: numbe
         fontFamily: 'var(--font-serif)',
         fontSize: '4rem',
         fontWeight: 700,
-        color: 'var(--gold)',
+        color: '#C9A84C',
         opacity: 0.12,
         lineHeight: 1,
         userSelect: 'none',
@@ -68,7 +68,7 @@ function TestimonialCard({ t, index }: { t: typeof TESTIMONIALS[0]; index: numbe
       {/* Stars */}
       <div style={{ display: 'flex', gap: '2px', marginBottom: '1rem' }}>
         {Array.from({ length: t.stars }).map((_, i) => (
-          <span key={i} style={{ color: 'var(--gold)', fontSize: '0.875rem' }}>★</span>
+          <span key={i} style={{ color: '#C9A84C', fontSize: '0.875rem' }}>★</span>
         ))}
       </div>
 
@@ -76,7 +76,7 @@ function TestimonialCard({ t, index }: { t: typeof TESTIMONIALS[0]; index: numbe
       <p style={{
         fontFamily: 'var(--font-sans)',
         fontSize: '0.9375rem',
-        color: 'rgba(245,245,245,0.55)',
+        color: '#BDB8AD',
         lineHeight: 1.7,
         marginBottom: '1.5rem',
         position: 'relative',
@@ -94,7 +94,7 @@ function TestimonialCard({ t, index }: { t: typeof TESTIMONIALS[0]; index: numbe
           fontFamily: 'var(--font-serif)',
           fontSize: '1.0625rem',
           fontWeight: 700,
-          color: '#F5F5F5',
+          color: '#F7F4EE',
           marginBottom: '0.2rem',
         }}>
           {t.name}
@@ -102,7 +102,7 @@ function TestimonialCard({ t, index }: { t: typeof TESTIMONIALS[0]; index: numbe
         <div style={{
           fontFamily: 'var(--font-sans)',
           fontSize: '0.6875rem',
-          color: 'rgba(245,245,245,0.55)',
+          color: '#BDB8AD',
           letterSpacing: '0.08em',
         }}>
           {t.event}
@@ -114,7 +114,7 @@ function TestimonialCard({ t, index }: { t: typeof TESTIMONIALS[0]; index: numbe
 
 export default function Testimonials() {
   return (
-    <section style={{ padding: '5rem 1.5rem', background: '#0A0A0A' }}>
+    <section style={{ padding: '5rem 1.5rem', background: '#080808' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
         {/* Label + Title */}
         <div className="section-label" style={{ marginBottom: '1rem' }}>
@@ -124,7 +124,7 @@ export default function Testimonials() {
           fontFamily: 'var(--font-serif)',
           fontSize: 'clamp(2rem, 4vw, 3.5rem)',
           fontWeight: 500,
-          color: '#F5F5F5',
+          color: '#F7F4EE',
           marginBottom: '3rem',
           letterSpacing: '-0.02em',
         }}>

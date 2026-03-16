@@ -145,10 +145,10 @@ const QuoteGenerator = forwardRef<QuoteGeneratorRef>(function QuoteGenerator(_, 
         style={{ textAlign: 'center', padding: '4rem 2rem' }}
       >
         <div style={{ fontSize: '3rem', marginBottom: '1.5rem' }}>✦</div>
-        <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '2rem', fontWeight: 500, color: '#F5F5F5', marginBottom: '0.75rem' }}>
+        <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '2rem', fontWeight: 500, color: '#F7F4EE', marginBottom: '0.75rem' }}>
           Devis {quoteRef} Généré
         </h3>
-        <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.9375rem', color: 'rgba(245,245,245,0.55)', maxWidth: '40ch', margin: '0 auto 2rem', lineHeight: 1.7 }}>
+        <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.9375rem', color: '#BDB8AD', maxWidth: '40ch', margin: '0 auto 2rem', lineHeight: 1.7 }}>
           Vous recevrez votre devis détaillé par email sous quelques minutes. Notre équipe vous contactera dans les 24h.
         </p>
         <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
@@ -186,12 +186,12 @@ const QuoteGenerator = forwardRef<QuoteGeneratorRef>(function QuoteGenerator(_, 
           overflow-y: auto;
           overflow-x: hidden;
           scrollbar-width: thin;
-          scrollbar-color: var(--gold)44 #111;
+          scrollbar-color: #C9A84C44 #111;
           z-index: 5;
         }
         .quote-sticky-panel::-webkit-scrollbar { width: 4px; }
         .quote-sticky-panel::-webkit-scrollbar-track { background: #111; }
-        .quote-sticky-panel::-webkit-scrollbar-thumb { background: var(--gold)44; border-radius: 2px; }
+        .quote-sticky-panel::-webkit-scrollbar-thumb { background: #C9A84C44; border-radius: 2px; }
         @media (max-width: 1024px) {
           .quote-sticky-panel {
             position: static !important;
@@ -206,7 +206,7 @@ const QuoteGenerator = forwardRef<QuoteGeneratorRef>(function QuoteGenerator(_, 
           bottom: 68px;
           left: 0; right: 0;
           background: #0f0f0a;
-          border-top: 2px solid var(--gold);
+          border-top: 2px solid #C9A84C;
           padding: 0.75rem 1.25rem;
           z-index: 50;
           align-items: center;
@@ -220,7 +220,7 @@ const QuoteGenerator = forwardRef<QuoteGeneratorRef>(function QuoteGenerator(_, 
         .qty-btn {
           background: none !important;
           border: none !important;
-          color: var(--gold) !important;
+          color: #C9A84C !important;
           font-size: 1.25rem !important;
           cursor: pointer !important;
           line-height: 1 !important;
@@ -249,9 +249,9 @@ const QuoteGenerator = forwardRef<QuoteGeneratorRef>(function QuoteGenerator(_, 
                 textTransform: 'uppercase',
                 padding: '0.5rem 1rem',
                 border: '1px solid',
-                borderColor: activeTab === tab.id ? 'var(--gold)' : '#2A2A2A',
-                background: activeTab === tab.id ? 'var(--gold)' : 'transparent',
-                color: activeTab === tab.id ? '#0A0A0A' : 'rgba(245,245,245,0.55)',
+                borderColor: activeTab === tab.id ? '#C9A84C' : '#2A2A2A',
+                background: activeTab === tab.id ? '#C9A84C' : 'transparent',
+                color: activeTab === tab.id ? '#080808' : '#BDB8AD',
                 cursor: 'pointer',
                 transition: 'all 0.2s ease',
               }}
@@ -276,9 +276,9 @@ const QuoteGenerator = forwardRef<QuoteGeneratorRef>(function QuoteGenerator(_, 
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.2 }}
                   style={{
-                    background: inCart ? '#0f0f0a' : '#0A0A0A',
+                    background: inCart ? '#0f0f0a' : '#080808',
                     padding: '1.5rem',
-                    borderTop: inCart ? '2px solid var(--gold)' : '2px solid transparent',
+                    borderTop: inCart ? '2px solid #C9A84C' : '2px solid transparent',
                     transition: 'background 0.2s ease',
                     display: 'flex',
                     flexDirection: 'column',
@@ -286,26 +286,26 @@ const QuoteGenerator = forwardRef<QuoteGeneratorRef>(function QuoteGenerator(_, 
                   }}
                 >
                   {/* Category chip */}
-                  <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.5625rem', fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--gold)' }}>
+                  <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.5625rem', fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#C9A84C' }}>
                     {service.category.replace('_', ' ')}
                   </span>
 
                   {/* Name & tagline */}
                   <div>
-                    <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.125rem', fontWeight: 500, color: '#F5F5F5', marginBottom: '0.25rem' }}>
+                    <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.125rem', fontWeight: 500, color: '#F7F4EE', marginBottom: '0.25rem' }}>
                       {service.name}
                     </h4>
-                    <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.75rem', color: 'rgba(245,245,245,0.55)', lineHeight: 1.5 }}>
+                    <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.75rem', color: '#BDB8AD', lineHeight: 1.5 }}>
                       {service.tagline}
                     </p>
                   </div>
 
                   {/* Price */}
                   <div>
-                    <div style={{ fontFamily: 'var(--font-sans)', fontSize: '0.5625rem', color: 'rgba(245,245,245,0.55)', letterSpacing: '0.08em', marginBottom: '2px' }}>
+                    <div style={{ fontFamily: 'var(--font-sans)', fontSize: '0.5625rem', color: '#BDB8AD', letterSpacing: '0.08em', marginBottom: '2px' }}>
                       {service.price?.label ?? 'Dès'}
                     </div>
-                    <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', fontWeight: 600, color: 'var(--gold)' }}>
+                    <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', fontWeight: 600, color: '#C9A84C' }}>
                       {service.price ? formatPrice(service.price.min, service.price.currency, { compact: true }) : 'Sur demande'}
                     </div>
                   </div>
@@ -320,13 +320,13 @@ const QuoteGenerator = forwardRef<QuoteGeneratorRef>(function QuoteGenerator(_, 
                       + Ajouter au devis
                     </button>
                   ) : (
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', border: '1px solid var(--gold)', padding: '0.25rem 0.5rem' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', border: '1px solid #C9A84C', padding: '0.25rem 0.5rem' }}>
                       <button
                         onClick={() => updateQty(service.id, -1)}
                         className="qty-btn"
                         aria-label="Diminuer"
                       >−</button>
-                      <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.875rem', fontWeight: 600, color: '#F5F5F5', minWidth: '1.5rem', textAlign: 'center' }}>
+                      <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.875rem', fontWeight: 600, color: '#F7F4EE', minWidth: '1.5rem', textAlign: 'center' }}>
                         {cartItem.quantity}
                       </span>
                       <button
@@ -343,7 +343,7 @@ const QuoteGenerator = forwardRef<QuoteGeneratorRef>(function QuoteGenerator(_, 
         </div>
 
         {filteredServices.length === 0 && (
-          <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.875rem', color: 'rgba(245,245,245,0.55)', padding: '2rem', textAlign: 'center' }}>
+          <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.875rem', color: '#BDB8AD', padding: '2rem', textAlign: 'center' }}>
             Aucun service dans cette catégorie.
           </p>
         )}
@@ -353,10 +353,10 @@ const QuoteGenerator = forwardRef<QuoteGeneratorRef>(function QuoteGenerator(_, 
       {cart.length > 0 && (
         <div className="mobile-cart-bar">
           <div>
-            <div style={{ fontFamily: 'var(--font-sans)', fontSize: '0.5625rem', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--gold)' }}>
+            <div style={{ fontFamily: 'var(--font-sans)', fontSize: '0.5625rem', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#C9A84C' }}>
               {cart.length} service{cart.length > 1 ? 's' : ''}
             </div>
-            <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1.125rem', fontWeight: 600, color: '#F5F5F5' }}>
+            <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1.125rem', fontWeight: 600, color: '#F7F4EE' }}>
               {formatPrice(total, 'FCFA', { compact: true })}
             </div>
           </div>
@@ -365,8 +365,8 @@ const QuoteGenerator = forwardRef<QuoteGeneratorRef>(function QuoteGenerator(_, 
             style={{
               display: 'inline-flex', alignItems: 'center', gap: '0.375rem',
               padding: '0.625rem 1.125rem',
-              background: 'linear-gradient(135deg, var(--gold), #E0C068)',
-              color: '#0A0A0A', fontFamily: 'var(--font-sans)', fontSize: '0.75rem',
+              background: 'linear-gradient(135deg, #C9A84C, #E0C068)',
+              color: '#080808', fontFamily: 'var(--font-sans)', fontSize: '0.75rem',
               fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase',
               textDecoration: 'none', minHeight: 'auto', whiteSpace: 'nowrap',
             }}
@@ -382,11 +382,11 @@ const QuoteGenerator = forwardRef<QuoteGeneratorRef>(function QuoteGenerator(_, 
 
           {/* Cart header */}
           <div style={{ padding: '1.25rem 1.5rem', borderBottom: '1px solid #1A1A1A', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.125rem', fontWeight: 500, color: '#F5F5F5', margin: 0 }}>
+            <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.125rem', fontWeight: 500, color: '#F7F4EE', margin: 0 }}>
               Votre Devis
             </h3>
             {cart.length > 0 && (
-              <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.625rem', fontWeight: 700, letterSpacing: '0.12em', background: 'var(--gold)', color: '#0A0A0A', padding: '0.2rem 0.5rem' }}>
+              <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.625rem', fontWeight: 700, letterSpacing: '0.12em', background: '#C9A84C', color: '#080808', padding: '0.2rem 0.5rem' }}>
                 {cart.length} service{cart.length > 1 ? 's' : ''}
               </span>
             )}
@@ -396,7 +396,7 @@ const QuoteGenerator = forwardRef<QuoteGeneratorRef>(function QuoteGenerator(_, 
           <div style={{ padding: '1rem 1.5rem', minHeight: '80px' }}>
             <AnimatePresence>
               {cart.length === 0 ? (
-                <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.8125rem', color: 'rgba(245,245,245,0.55)', textAlign: 'center', padding: '1rem 0', opacity: 0.6 }}>
+                <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.8125rem', color: '#BDB8AD', textAlign: 'center', padding: '1rem 0', opacity: 0.6 }}>
                   Sélectionnez des services →
                 </p>
               ) : (
@@ -409,10 +409,10 @@ const QuoteGenerator = forwardRef<QuoteGeneratorRef>(function QuoteGenerator(_, 
                     style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.5rem 0', borderBottom: '1px solid #1A1A1A' }}
                   >
                     <div style={{ flex: 1, marginRight: '0.5rem' }}>
-                      <div style={{ fontFamily: 'var(--font-sans)', fontSize: '0.75rem', color: '#F5F5F5', fontWeight: 500 }}>{item.serviceName}</div>
-                      <div style={{ fontFamily: 'var(--font-sans)', fontSize: '0.625rem', color: 'rgba(245,245,245,0.55)' }}>× {item.quantity} · {formatPrice(item.unitPrice, 'FCFA', { compact: true })} / u.</div>
+                      <div style={{ fontFamily: 'var(--font-sans)', fontSize: '0.75rem', color: '#F7F4EE', fontWeight: 500 }}>{item.serviceName}</div>
+                      <div style={{ fontFamily: 'var(--font-sans)', fontSize: '0.625rem', color: '#BDB8AD' }}>× {item.quantity} · {formatPrice(item.unitPrice, 'FCFA', { compact: true })} / u.</div>
                     </div>
-                    <div style={{ fontFamily: 'var(--font-serif)', fontSize: '0.9375rem', fontWeight: 600, color: 'var(--gold)', flexShrink: 0 }}>
+                    <div style={{ fontFamily: 'var(--font-serif)', fontSize: '0.9375rem', fontWeight: 600, color: '#C9A84C', flexShrink: 0 }}>
                       {formatPrice(item.unitPrice * item.quantity, 'FCFA', { compact: true })}
                     </div>
                   </motion.div>
@@ -423,25 +423,25 @@ const QuoteGenerator = forwardRef<QuoteGeneratorRef>(function QuoteGenerator(_, 
 
           {/* Totals */}
           {cart.length > 0 && (
-            <div style={{ padding: '0.75rem 1.5rem', borderTop: '1px solid #1A1A1A', background: '#0A0A0A' }}>
+            <div style={{ padding: '0.75rem 1.5rem', borderTop: '1px solid #1A1A1A', background: '#080808' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.375rem' }}>
-                <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.75rem', color: 'rgba(245,245,245,0.55)' }}>Sous-total</span>
-                <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.75rem', color: '#F5F5F5' }}>{formatPrice(subtotal, 'FCFA', { compact: true })}</span>
+                <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.75rem', color: '#BDB8AD' }}>Sous-total</span>
+                <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.75rem', color: '#F7F4EE' }}>{formatPrice(subtotal, 'FCFA', { compact: true })}</span>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.625rem' }}>
-                <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.75rem', color: 'rgba(245,245,245,0.55)' }}>TVA (18%)</span>
-                <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.75rem', color: '#F5F5F5' }}>{formatPrice(tax, 'FCFA', { compact: true })}</span>
+                <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.75rem', color: '#BDB8AD' }}>TVA (18%)</span>
+                <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.75rem', color: '#F7F4EE' }}>{formatPrice(tax, 'FCFA', { compact: true })}</span>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px solid #2A2A2A', paddingTop: '0.625rem' }}>
-                <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.875rem', fontWeight: 700, color: 'var(--gold)' }}>TOTAL TTC</span>
-                <span style={{ fontFamily: 'var(--font-serif)', fontSize: '1.125rem', fontWeight: 700, color: 'var(--gold)' }}>{formatPrice(total, 'FCFA', { compact: true })}</span>
+                <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.875rem', fontWeight: 700, color: '#C9A84C' }}>TOTAL TTC</span>
+                <span style={{ fontFamily: 'var(--font-serif)', fontSize: '1.125rem', fontWeight: 700, color: '#C9A84C' }}>{formatPrice(total, 'FCFA', { compact: true })}</span>
               </div>
             </div>
           )}
 
           {/* Client form */}
           <form onSubmit={handleSubmit(onSubmit)} style={{ padding: '1.5rem', borderTop: '1px solid #1A1A1A', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-            <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.6875rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--gold)', margin: '0 0 0.5rem' }}>
+            <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.6875rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#C9A84C', margin: '0 0 0.5rem' }}>
               Vos informations
             </p>
 

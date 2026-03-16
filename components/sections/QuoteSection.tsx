@@ -33,7 +33,7 @@ export default function QuoteSection() {
               fontFamily: 'var(--font-serif)',
               fontSize: 'clamp(2rem, 4vw, 3.5rem)',
               fontWeight: 500,
-              color: '#F5F5F5',
+              color: '#F7F4EE',
               lineHeight: 1.1,
               marginBottom: '1rem',
             }}
@@ -44,7 +44,7 @@ export default function QuoteSection() {
             style={{
               fontFamily: 'var(--font-sans)',
               fontSize: '0.9375rem',
-              color: 'rgba(245,245,245,0.55)',
+              color: '#BDB8AD',
               lineHeight: 1.7,
             }}
           >
@@ -85,7 +85,7 @@ export default function QuoteSection() {
                   fontSize: '0.6875rem',
                   fontWeight: 600,
                   letterSpacing: '0.08em',
-                  color: 'rgba(245,245,245,0.55)',
+                  color: '#BDB8AD',
                   textTransform: 'uppercase',
                 }}
               >

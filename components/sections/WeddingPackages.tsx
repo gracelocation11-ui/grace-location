@@ -67,16 +67,16 @@ interface Props {
 
 export default function WeddingPackages({ onAdd, addedIds = [] }: Props) {
   return (
-    <section style={{ padding: '3rem 1.5rem 0', background: '#0A0A0A' }}>
+    <section style={{ padding: '3rem 1.5rem 0', background: '#080808' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
 
         {/* Header */}
         <div style={{ marginBottom: '2rem' }}>
           <div className="section-label" style={{ marginBottom: '0.75rem' }}>Forfaits Mariage</div>
-          <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.5rem, 3vw, 2rem)', fontWeight: 500, color: '#F5F5F5', margin: '0 0 0.5rem' }}>
+          <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.5rem, 3vw, 2rem)', fontWeight: 500, color: '#F7F4EE', margin: '0 0 0.5rem' }}>
             Packages Clé en Main
           </h2>
-          <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.875rem', color: 'rgba(245,245,245,0.55)', lineHeight: 1.6, maxWidth: '60ch' }}>
+          <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.875rem', color: '#BDB8AD', lineHeight: 1.6, maxWidth: '60ch' }}>
             Tout inclus pour votre mariage — de l&apos;essentiel au luxe absolu. Ajoutez le forfait à votre devis en un clic.
           </p>
         </div>
@@ -89,12 +89,12 @@ export default function WeddingPackages({ onAdd, addedIds = [] }: Props) {
               <div
                 key={pkg.id}
                 style={{
-                  background: pkg.highlight ? '#0f0f0a' : '#0A0A0A',
+                  background: pkg.highlight ? '#0f0f0a' : '#080808',
                   padding: '2rem 1.5rem',
                   display: 'flex',
                   flexDirection: 'column',
                   gap: '1rem',
-                  borderTop: pkg.highlight ? '2px solid var(--gold)' : '2px solid transparent',
+                  borderTop: pkg.highlight ? '2px solid #C9A84C' : '2px solid transparent',
                   position: 'relative',
                 }}
               >
@@ -104,19 +104,19 @@ export default function WeddingPackages({ onAdd, addedIds = [] }: Props) {
                     position: 'absolute', top: '1rem', right: '1rem',
                     fontFamily: 'var(--font-sans)', fontSize: '0.5625rem', fontWeight: 700,
                     letterSpacing: '0.15em', textTransform: 'uppercase',
-                    background: 'var(--gold)', color: '#0A0A0A', padding: '0.2rem 0.625rem',
+                    background: '#C9A84C', color: '#080808', padding: '0.2rem 0.625rem',
                   }}>
                     {pkg.badge}
                   </span>
                 )}
 
                 {/* Title */}
-                <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.375rem', fontWeight: 500, color: '#F5F5F5', margin: 0, paddingRight: pkg.badge ? '4rem' : 0 }}>
+                <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.375rem', fontWeight: 500, color: '#F7F4EE', margin: 0, paddingRight: pkg.badge ? '4rem' : 0 }}>
                   {pkg.title}
                 </h3>
 
                 {/* Price */}
-                <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1.375rem', fontWeight: 600, color: 'var(--gold)' }}>
+                <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1.375rem', fontWeight: 600, color: '#C9A84C' }}>
                   {pkg.priceLabel}
                 </div>
 
@@ -124,8 +124,8 @@ export default function WeddingPackages({ onAdd, addedIds = [] }: Props) {
                 <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem', flex: 1 }}>
                   {pkg.includes.map(item => (
                     <li key={item} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
-                      <span style={{ color: 'var(--gold)', flexShrink: 0, fontSize: '0.5rem', marginTop: '4px' }}>✦</span>
-                      <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.8125rem', color: 'rgba(245,245,245,0.55)', lineHeight: 1.45 }}>{item}</span>
+                      <span style={{ color: '#C9A84C', flexShrink: 0, fontSize: '0.5rem', marginTop: '4px' }}>✦</span>
+                      <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.8125rem', color: '#BDB8AD', lineHeight: 1.45 }}>{item}</span>
                     </li>
                   ))}
                 </ul>

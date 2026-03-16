@@ -158,18 +158,18 @@ export default function AppointmentBooking() {
           </div>
 
           {/* Reference */}
-          <div style={{ fontFamily: 'var(--font-sans)', fontSize: '0.625rem', fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '0.5rem' }}>
+          <div style={{ fontFamily: 'var(--font-sans)', fontSize: '0.625rem', fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#C9A84C', marginBottom: '0.5rem' }}>
             {confirmationRef}
           </div>
 
-          <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.625rem', fontWeight: 500, color: '#F5F5F5', marginBottom: '0.375rem', lineHeight: 1.2 }}>
+          <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.625rem', fontWeight: 500, color: '#F7F4EE', marginBottom: '0.375rem', lineHeight: 1.2 }}>
             Rendez-vous confirmé
           </h3>
 
-          <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.9375rem', color: 'var(--gold)', marginBottom: '0.25rem' }}>
+          <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.9375rem', color: '#C9A84C', marginBottom: '0.25rem' }}>
             {confirmationService}
           </p>
-          <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.875rem', color: 'rgba(245,245,245,0.55)', marginBottom: '2rem' }}>
+          <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.875rem', color: '#BDB8AD', marginBottom: '2rem' }}>
             {formatDateDisplay(selectedDate)} · {selectedTime} · {selectedChannel.label}
           </p>
 
@@ -182,14 +182,14 @@ export default function AppointmentBooking() {
             textAlign: 'left',
           }}>
             {emailSent ? (
-              <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.8125rem', color: 'rgba(245,245,245,0.55)', margin: 0, lineHeight: 1.6 }}>
+              <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.8125rem', color: '#BDB8AD', margin: 0, lineHeight: 1.6 }}>
                 <span style={{ color: '#25D366' }}>✓</span> Un email de confirmation a été envoyé à{' '}
-                <strong style={{ color: '#F5F5F5' }}>{/* clientEmail shown via form */}votre adresse email</strong>.
-                Notre équipe vous contactera sous <strong style={{ color: '#F5F5F5' }}>24h ouvrables</strong>.
+                <strong style={{ color: '#F7F4EE' }}>{/* clientEmail shown via form */}votre adresse email</strong>.
+                Notre équipe vous contactera sous <strong style={{ color: '#F7F4EE' }}>24h ouvrables</strong>.
               </p>
             ) : (
-              <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.8125rem', color: 'rgba(245,245,245,0.55)', margin: 0, lineHeight: 1.6 }}>
-                <span style={{ color: 'var(--gold)' }}>ℹ</span> L&apos;envoi de l&apos;email de confirmation a échoué.
+              <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.8125rem', color: '#BDB8AD', margin: 0, lineHeight: 1.6 }}>
+                <span style={{ color: '#C9A84C' }}>ℹ</span> L&apos;envoi de l&apos;email de confirmation a échoué.
                 Votre réservation est bien enregistrée — confirmez via WhatsApp ci-dessous.
               </p>
             )}
@@ -237,10 +237,10 @@ export default function AppointmentBooking() {
 
       {/* ── HEADER ── */}
       <div style={{ padding: '1.5rem 2rem 0' }}>
-        <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 500, color: '#F5F5F5', margin: 0 }}>
+        <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 500, color: '#F7F4EE', margin: 0 }}>
           Réserver un rendez-vous
         </h3>
-        <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.75rem', color: 'var(--gold)', marginBottom: '2rem', marginTop: '0.25rem' }}>
+        <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.75rem', color: '#C9A84C', marginBottom: '2rem', marginTop: '0.25rem' }}>
           Accompagnement gratuit — sans engagement
         </p>
       </div>
@@ -260,11 +260,11 @@ export default function AppointmentBooking() {
                 padding: '1rem',
                 textAlign: 'center',
                 borderRight: i < 2 ? '1px solid #1A1A1A' : 'none',
-                background: isActive ? '#0A0A0A' : 'transparent',
-                borderBottom: isActive ? '2px solid var(--gold)' : '2px solid transparent',
+                background: isActive ? '#080808' : 'transparent',
+                borderBottom: isActive ? '2px solid #C9A84C' : '2px solid transparent',
               }}
             >
-              <div style={{ fontFamily: 'var(--font-sans)', fontSize: '0.6875rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: isActive ? 'var(--gold)' : isDone ? 'var(--gold)66' : '#2A2A2A' }}>
+              <div style={{ fontFamily: 'var(--font-sans)', fontSize: '0.6875rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: isActive ? '#C9A84C' : isDone ? '#C9A84C66' : '#2A2A2A' }}>
                 {i + 1}. {stepLabels[s as 'type' | 'datetime' | 'details']}
               </div>
             </div>
@@ -278,7 +278,7 @@ export default function AppointmentBooking() {
           {/* ── STEP 1: TYPE + CHANNEL ── */}
           {step === 'type' && (
             <motion.div key="type" initial={{ opacity: 0, x: 16 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -16 }} transition={{ duration: 0.3 }}>
-              <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.6875rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '1rem' }}>
+              <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.6875rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#C9A84C', marginBottom: '1rem' }}>
                 Type de rendez-vous
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '2rem' }}>
@@ -292,7 +292,7 @@ export default function AppointmentBooking() {
                       gap: '1rem',
                       padding: '1rem',
                       background: selectedType.value === type.value ? '#0f0f0a' : 'transparent',
-                      border: `1px solid ${selectedType.value === type.value ? 'var(--gold)' : '#2A2A2A'}`,
+                      border: `1px solid ${selectedType.value === type.value ? '#C9A84C' : '#2A2A2A'}`,
                       cursor: 'pointer',
                       textAlign: 'left',
                       transition: 'border-color 0.2s ease, background 0.2s ease',
@@ -300,19 +300,19 @@ export default function AppointmentBooking() {
                   >
                     <span style={{ fontSize: '1.25rem', flexShrink: 0 }}>{type.icon}</span>
                     <div style={{ flex: 1 }}>
-                      <div style={{ fontFamily: 'var(--font-sans)', fontSize: '0.875rem', fontWeight: 500, color: '#F5F5F5' }}>{type.label}</div>
-                      <div style={{ fontFamily: 'var(--font-sans)', fontSize: '0.6875rem', color: 'rgba(245,245,245,0.55)' }}>{type.duration} min</div>
+                      <div style={{ fontFamily: 'var(--font-sans)', fontSize: '0.875rem', fontWeight: 500, color: '#F7F4EE' }}>{type.label}</div>
+                      <div style={{ fontFamily: 'var(--font-sans)', fontSize: '0.6875rem', color: '#BDB8AD' }}>{type.duration} min</div>
                     </div>
                     {selectedType.value === type.value && (
-                      <div style={{ width: '18px', height: '18px', borderRadius: '50%', background: 'var(--gold)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                        <span style={{ color: '#0A0A0A', fontSize: '0.625rem', fontWeight: 700 }}>✓</span>
+                      <div style={{ width: '18px', height: '18px', borderRadius: '50%', background: '#C9A84C', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                        <span style={{ color: '#080808', fontSize: '0.625rem', fontWeight: 700 }}>✓</span>
                       </div>
                     )}
                   </button>
                 ))}
               </div>
 
-              <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.6875rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '1rem' }}>
+              <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.6875rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#C9A84C', marginBottom: '1rem' }}>
                 Canal préféré
               </p>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.5rem', marginBottom: '2rem' }}>
@@ -326,13 +326,13 @@ export default function AppointmentBooking() {
                       gap: '0.5rem',
                       padding: '0.75rem',
                       background: 'transparent',
-                      border: `1px solid ${selectedChannel.value === ch.value ? 'var(--gold)' : '#2A2A2A'}`,
+                      border: `1px solid ${selectedChannel.value === ch.value ? '#C9A84C' : '#2A2A2A'}`,
                       cursor: 'pointer',
                       transition: 'border-color 0.2s ease',
                     } as React.CSSProperties}
                   >
                     <span style={{ fontSize: '1rem' }}>{ch.icon}</span>
-                    <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.75rem', color: selectedChannel.value === ch.value ? 'var(--gold)' : 'rgba(245,245,245,0.55)', fontWeight: selectedChannel.value === ch.value ? 600 : 400 }}>{ch.label}</span>
+                    <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.75rem', color: selectedChannel.value === ch.value ? '#C9A84C' : '#BDB8AD', fontWeight: selectedChannel.value === ch.value ? 600 : 400 }}>{ch.label}</span>
                   </button>
                 ))}
               </div>
@@ -346,7 +346,7 @@ export default function AppointmentBooking() {
           {/* ── STEP 2: DATE + TIME ── */}
           {step === 'datetime' && (
             <motion.div key="datetime" initial={{ opacity: 0, x: 16 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -16 }} transition={{ duration: 0.3 }}>
-              <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.6875rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '1rem' }}>
+              <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.6875rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#C9A84C', marginBottom: '1rem' }}>
                 Choisissez une date
               </p>
               <input
@@ -361,7 +361,7 @@ export default function AppointmentBooking() {
 
               {selectedDate && (
                 <>
-                  <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.6875rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '0.75rem' }}>
+                  <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.6875rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#C9A84C', marginBottom: '0.75rem' }}>
                     Créneaux disponibles — {formatDateDisplay(selectedDate)}
                   </p>
 
@@ -384,9 +384,9 @@ export default function AppointmentBooking() {
                             style={{
                               padding: '0.75rem 0.25rem',
                               minHeight: '44px',
-                              background: selected ? 'var(--gold)' : 'transparent',
-                              border: `1px solid ${booked ? '#1A1A1A' : selected ? 'var(--gold)' : '#2A2A2A'}`,
-                              color: booked ? '#2A2A2A' : selected ? '#0A0A0A' : '#F5F5F5',
+                              background: selected ? '#C9A84C' : 'transparent',
+                              border: `1px solid ${booked ? '#1A1A1A' : selected ? '#C9A84C' : '#2A2A2A'}`,
+                              color: booked ? '#2A2A2A' : selected ? '#080808' : '#F7F4EE',
                               fontFamily: 'var(--font-sans)',
                               fontSize: '0.8125rem',
                               fontWeight: selected ? 700 : 400,
@@ -429,12 +429,12 @@ export default function AppointmentBooking() {
           {step === 'details' && (
             <motion.div key="details" initial={{ opacity: 0, x: 16 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -16 }} transition={{ duration: 0.3 }}>
               {/* Summary */}
-              <div style={{ padding: '1rem', background: '#0A0A0A', border: '1px solid #2A2A2A', borderLeft: '3px solid var(--gold)', marginBottom: '1.5rem' }}>
-                <div style={{ fontFamily: 'var(--font-sans)', fontSize: '0.75rem', color: 'rgba(245,245,245,0.55)', marginBottom: '4px' }}>Votre rendez-vous</div>
-                <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1rem', color: '#F5F5F5', fontWeight: 500 }}>
+              <div style={{ padding: '1rem', background: '#080808', border: '1px solid #2A2A2A', borderLeft: '3px solid #C9A84C', marginBottom: '1.5rem' }}>
+                <div style={{ fontFamily: 'var(--font-sans)', fontSize: '0.75rem', color: '#BDB8AD', marginBottom: '4px' }}>Votre rendez-vous</div>
+                <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1rem', color: '#F7F4EE', fontWeight: 500 }}>
                   {selectedType.label} · {selectedType.duration} min
                 </div>
-                <div style={{ fontFamily: 'var(--font-sans)', fontSize: '0.8125rem', color: 'var(--gold)' }}>
+                <div style={{ fontFamily: 'var(--font-sans)', fontSize: '0.8125rem', color: '#C9A84C' }}>
                   {formatDateDisplay(selectedDate)} à {selectedTime} · {selectedChannel.label}
                 </div>
               </div>
@@ -478,7 +478,7 @@ export default function AppointmentBooking() {
                         width: '14px',
                         height: '14px',
                         border: '2px solid rgba(8,8,8,0.3)',
-                        borderTopColor: '#0A0A0A',
+                        borderTopColor: '#080808',
                         borderRadius: '50%',
                         animation: 'spin 0.7s linear infinite',
                         flexShrink: 0,

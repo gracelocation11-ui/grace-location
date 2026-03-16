@@ -51,7 +51,7 @@ export default function Navbar() {
           zIndex: 50,
           transition: 'background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease',
           background: scrolled
-            ? 'rgba(10,10,10,0.95)'
+            ? 'rgba(8,8,8,0.92)'
             : 'transparent',
           backdropFilter: scrolled ? 'blur(16px)' : 'none',
           WebkitBackdropFilter: scrolled ? 'blur(16px)' : 'none',
@@ -83,11 +83,11 @@ export default function Navbar() {
               <span
                 style={{
                   display: 'block',
-                  fontFamily: 'var(--font-display)',
-                  fontSize: '1rem',
-                  fontWeight: 700,
-                  letterSpacing: '0.15em',
-                  color: '#CFA948',
+                  fontFamily: 'var(--font-serif)',
+                  fontSize: '1.1875rem',
+                  fontWeight: 600,
+                  letterSpacing: '0.04em',
+                  color: '#C9A84C',
                   textTransform: 'uppercase',
                 }}
               >
@@ -97,12 +97,12 @@ export default function Navbar() {
                 style={{
                   display: 'block',
                   fontFamily: 'var(--font-sans)',
-                  fontSize: '0.55rem',
+                  fontSize: '0.6rem',
                   fontWeight: 400,
-                  letterSpacing: '0.2em',
-                  color: 'rgba(245,245,245,0.45)',
+                  letterSpacing: '0.18em',
+                  color: '#BDB8AD',
                   textTransform: 'uppercase',
-                  marginTop: '3px',
+                  marginTop: '2px',
                 }}
               >
                 Grâce Location · Libreville
@@ -130,14 +130,14 @@ export default function Navbar() {
                   fontWeight: 500,
                   letterSpacing: '0.1em',
                   textTransform: 'uppercase',
-                  color: 'rgba(245,245,245,0.55)',
+                  color: '#BDB8AD',
                   textDecoration: 'none',
                   padding: '0.5rem 0.75rem',
                   borderRadius: '4px',
                   transition: 'color 0.2s ease',
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = '#CFA948')}
-                onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(245,245,245,0.55)')}
+                onMouseEnter={(e) => (e.currentTarget.style.color = '#C9A84C')}
+                onMouseLeave={(e) => (e.currentTarget.style.color = '#BDB8AD')}
               >
                 {link.label}
               </Link>
@@ -158,8 +158,8 @@ export default function Navbar() {
                 alignItems: 'center',
                 gap: '6px',
                 padding: '0.5rem 1rem',
-                border: '1px solid #CFA948',
-                color: '#CFA948',
+                border: '1px solid #C9A84C',
+                color: '#C9A84C',
                 fontFamily: 'var(--font-sans)',
                 fontSize: '0.6875rem',
                 fontWeight: 600,
@@ -169,7 +169,7 @@ export default function Navbar() {
                 transition: 'background 0.25s ease, color 0.25s ease',
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = '#CFA94818'
+                e.currentTarget.style.background = '#C9A84C18'
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.background = 'transparent'
@@ -211,7 +211,7 @@ export default function Navbar() {
               style={{
                 display: 'block',
                 height: '1.5px',
-                background: '#CFA948',
+                background: '#C9A84C',
                 borderRadius: '1px',
                 transition: 'transform 0.3s ease, opacity 0.3s ease, width 0.3s ease',
                 width: open ? '24px' : '24px',
@@ -222,7 +222,7 @@ export default function Navbar() {
               style={{
                 display: 'block',
                 height: '1.5px',
-                background: '#CFA948',
+                background: '#C9A84C',
                 borderRadius: '1px',
                 width: '18px',
                 transition: 'opacity 0.3s ease',
@@ -233,7 +233,7 @@ export default function Navbar() {
               style={{
                 display: 'block',
                 height: '1.5px',
-                background: '#CFA948',
+                background: '#C9A84C',
                 borderRadius: '1px',
                 transition: 'transform 0.3s ease, opacity 0.3s ease',
                 width: open ? '24px' : '24px',
@@ -251,7 +251,7 @@ export default function Navbar() {
           position: 'fixed',
           inset: 0,
           zIndex: 49,
-          background: 'rgba(10,10,10,0.97)',
+          background: 'rgba(8,8,8,0.97)',
           backdropFilter: 'blur(20px)',
           WebkitBackdropFilter: 'blur(20px)',
           display: 'flex',
@@ -270,12 +270,10 @@ export default function Navbar() {
               href={link.href}
               onClick={handleNavClick}
               style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(1.5rem, 4.5vw, 2.25rem)',
-                fontWeight: 700,
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
-                color: '#F5F5F5',
+                fontFamily: 'var(--font-serif)',
+                fontSize: 'clamp(1.75rem, 5vw, 2.5rem)',
+                fontWeight: 500,
+                color: '#F7F4EE',
                 textDecoration: 'none',
                 padding: '0.5rem 0',
                 borderBottom: '1px solid #1A1A1A',
@@ -283,11 +281,11 @@ export default function Navbar() {
                 transitionDelay: open ? `${i * 40}ms` : '0ms',
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.color = '#CFA948'
+                e.currentTarget.style.color = '#C9A84C'
                 e.currentTarget.style.paddingLeft = '0.5rem'
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.color = '#F5F5F5'
+                e.currentTarget.style.color = '#F7F4EE'
                 e.currentTarget.style.paddingLeft = '0'
               }}
             >

@@ -5,7 +5,7 @@ import PillarsPreview from "@/components/sections/PillarsPreview"
 import TrustStats from "@/components/sections/TrustStats"
 import CompanyStory from "@/components/sections/CompanyStory"
 import VehiclesSection from "@/components/sections/VehiclesSection"
-import PortfolioSection from "@/components/sections/PortfolioSection"
+import PortfolioPreview from "@/components/sections/PortfolioPreview"
 import Testimonials from "@/components/sections/Testimonials"
 import CTABlock from "@/components/sections/CTABlock"
 import ContactSection from "@/components/sections/ContactSection"
@@ -23,7 +23,7 @@ export default function Home() {
       <TrustStats />
       <CompanyStory />
       <VehiclesSection />
-      <PortfolioSection />
+      <PortfolioPreview />
       <Testimonials />
       <CTABlock />
       <ContactSection />

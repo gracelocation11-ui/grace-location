@@ -4,6 +4,7 @@ import { Toaster } from 'react-hot-toast'
 import { Agentation } from 'agentation'
 import { Analytics } from '@vercel/analytics/next'
 import { GoogleAnalytics } from '@next/third-parties/google'
+import Script from 'next/script'
 import './globals.css'
 
 /* ─── FONTS ─────────────────────────────────────────────── */
@@ -148,6 +149,18 @@ export default function RootLayout({
 
         <Analytics />
         <GoogleAnalytics gaId="G-W7GH835CHJ" />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-W7GH835CHJ"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-W7GH835CHJ');
+          `}
+        </Script>
         {process.env.NODE_ENV === 'development' && <Agentation />}
 
         <Toaster

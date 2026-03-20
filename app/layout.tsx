@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Outfit } from 'next/font/google'
 import { Toaster } from 'react-hot-toast'
 import { Agentation } from 'agentation'
 import { Analytics } from '@vercel/analytics/next'
+import { GoogleAnalytics } from '@next/third-parties/google'
 import './globals.css'
 
 /* ─── FONTS ─────────────────────────────────────────────── */
@@ -146,6 +147,7 @@ export default function RootLayout({
         {children}
 
         <Analytics />
+        <GoogleAnalytics gaId="G-W7GH835CHJ" />
         {process.env.NODE_ENV === 'development' && <Agentation />}
 
         <Toaster
